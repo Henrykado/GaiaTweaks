@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "henrykado.gaiablossom.mixin",
+  "refmap": "mixins.gaiablossom.refmap.json",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8"
+}

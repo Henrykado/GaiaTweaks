@@ -1,0 +1,10 @@
+item.recall_potion.name=Recall Potion
+item.gaiablossom:living_jetpack.name=Living Jetpack
+
+item.botania:invisibility_cloak.name=Invisibility Cloak
+item.botania:cloud_pendant.name=Cloud Pendant
+
+tile.icystone.name=Frozen Cobblestone
+tile.cobbedstone.name=Cobbedstone
+
+keybind.achievements=Achievements
