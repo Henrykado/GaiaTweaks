@@ -2,6 +2,7 @@ package henrykado.gaiablossom.quark.world;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -91,8 +92,10 @@ public abstract class UndergroundBiome {
     public boolean isFloor(World world, int x, int y, int z, Block block) {
         if (!block.isNormalCube() || !block.isOpaqueCube()) return false;
 
-        return world.isAirBlock(x, y + 1, z) || world.getBlock(x, y + 1, z)
-            .isReplaceable(world, x, y + 1, z);
+        return (world.isAirBlock(x, y + 1, z) || (world.getBlock(x, y + 1, z)
+            .isReplaceable(world, x, y + 1, z))
+            && world.getBlock(x, y + 1, z)
+                .getMaterial() == Material.rock);
     }
 
     public boolean isCeiling(World world, int x, int y, int z, Block block) {

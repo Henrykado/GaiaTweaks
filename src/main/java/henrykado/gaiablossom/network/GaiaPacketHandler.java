@@ -5,6 +5,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import henrykado.gaiablossom.GaiaBlossom;
 import henrykado.gaiablossom.common.item.ItemCloudPendant;
+import henrykado.gaiablossom.common.item.ItemDodgeRing;
 
 public class GaiaPacketHandler {
 
@@ -16,6 +17,11 @@ public class GaiaPacketHandler {
         INSTANCE.registerMessage(
             ItemCloudPendant.PacketJump.Handler.class,
             ItemCloudPendant.PacketJump.class,
+            id++,
+            Side.SERVER);
+        INSTANCE.registerMessage(
+            ItemDodgeRing.PacketDodge.Handler.class,
+            ItemDodgeRing.PacketDodge.class,
             id++,
             Side.SERVER);
         // INSTANCE.registerMessage(GhastMessage.MessageHandler.class, GhastMessage.class, 0, Side.SERVER);

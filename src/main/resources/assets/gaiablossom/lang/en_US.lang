@@ -3,8 +3,12 @@ item.gaiablossom:living_jetpack.name=Living Jetpack
 
 item.botania:invisibility_cloak.name=Invisibility Cloak
 item.botania:cloud_pendant.name=Cloud Pendant
+item.botania:ring_dodge.name=Ring of Dexterious Motion
 
 tile.icystone.name=Frozen Cobblestone
 tile.cobbedstone.name=Cobbedstone
+tile.log_taintwood.name=Tainted Log
 
 keybind.achievements=Achievements
+
+valkyrie_queen.notready=Gather enough medals, become a threat

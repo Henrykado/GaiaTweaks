@@ -44,8 +44,12 @@ dependencies {
     implementation rfg.deobf("curse.maven:the-twilight-forest-227639:4629338")
 
     implementation rfg.deobf("curse.maven:hammerz-238928:2280216")
+    implementation rfg.deobf("curse.maven:primitive-mobs-282415:2649079")
+    implementation rfg.deobf("curse.maven:atomicstrykers-battle-towers-227877:2231443")
 
     implementation('com.github.GTNewHorizons:AppleCore:3.3.4:dev')
+
+    implementation('com.github.GTNewHorizons:Angelica:1.0.0-beta56:dev')
     //implementation rfg.deobf("curse.maven:applecore-224472:2530879")
 
 

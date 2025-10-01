@@ -31,7 +31,8 @@ public class UndergroundBiomeSandstone extends BasicUndergroundBiome {
     public void fillFloor(World world, int x, int y, int z, Block state) {
         if (enableSand && world.rand.nextBoolean()) {
             world.setBlock(x, y, z, Blocks.sand, 0, 2);
-            if (world.rand.nextDouble() < deadBushChance) world.setBlock(x, y + 1, z, Blocks.deadbush, 0, 2);
+            if (world.rand.nextDouble() < deadBushChance && world.isAirBlock(x, y + 1, z))
+                world.setBlock(x, y + 1, z, Blocks.deadbush, 0, 2);
         } else super.fillFloor(world, x, y, z, state);
     }
 

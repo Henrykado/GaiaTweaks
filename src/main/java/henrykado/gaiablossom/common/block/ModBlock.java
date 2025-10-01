@@ -8,6 +8,12 @@ import henrykado.gaiablossom.CustomCreativeTab;
 
 public class ModBlock extends Block {
 
+    public static Block blockTaintLog;
+
+    public static void registerEmBlocks() {
+        blockTaintLog = new BlockTaintLog();
+    }
+
     public ModBlock(Material par2Material) {
         super(par2Material);
         this.setCreativeTab(CustomCreativeTab.INSTANCE);

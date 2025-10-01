@@ -57,7 +57,7 @@ public class ItemCloudPendant extends ItemBauble {
                 jumpDown = true;
             } else {
                 if (playerSp.movementInput.jump) {
-                    if (!jumpDown && timesJumped < 2) {
+                    if (!jumpDown && timesJumped < 1) {
                         playerSp.jump();
                         GaiaPacketHandler.INSTANCE.sendToServer(new PacketJump());
                         timesJumped++;

@@ -10,6 +10,8 @@
  */
 package henrykado.gaiablossom.common.item;
 
+import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +20,10 @@ import net.minecraft.potion.PotionEffect;
 
 import baubles.api.BaubleType;
 import baubles.api.expanded.BaubleExpandedSlots;
+import baubles.api.expanded.BaubleItemHelper;
 import baubles.api.expanded.IBaubleExpanded;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import vazkii.botania.api.mana.IManaUsingItem;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.item.equipment.bauble.ItemBauble;
@@ -55,7 +60,6 @@ public class ItemInvisibilityCloak extends ItemBauble implements IManaUsingItem,
 
                 player.addPotionEffect(new PotionEffect(Potion.invisibility.id, Integer.MAX_VALUE, -42, true));
             }
-
         }
     }
 
@@ -67,5 +71,10 @@ public class ItemInvisibilityCloak extends ItemBauble implements IManaUsingItem,
     @Override
     public String[] getBaubleTypes(ItemStack itemStack) {
         return new String[] { BaubleExpandedSlots.bodyType };
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        BaubleItemHelper.addSlotInformation(par3List, getBaubleTypes(par1ItemStack));
     }
 }

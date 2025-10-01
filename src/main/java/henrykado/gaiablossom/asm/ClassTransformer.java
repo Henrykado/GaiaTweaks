@@ -17,15 +17,8 @@ import org.objectweb.asm.tree.TypeInsnNode;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessory;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessoryDyed;
 import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
-import henrykado.gaiablossom.asm.replacements.NewModelTFBighorn;
-import henrykado.gaiablossom.asm.replacements.NewModelTFBighornFur;
-import henrykado.gaiablossom.asm.replacements.NewModelTFDeer;
-import henrykado.gaiablossom.asm.replacements.NewRenderPylon;
-import henrykado.gaiablossom.asm.replacements.NewRenderTilePylon;
 import scala.tools.asm.Opcodes;
 import thaumcraft.common.items.armor.ItemGoggles;
-import vazkii.botania.client.render.block.RenderPylon;
-import vazkii.botania.client.render.tile.RenderTilePylon;
 
 public class ClassTransformer implements IClassTransformer {
 
@@ -45,32 +38,6 @@ public class ClassTransformer implements IClassTransformer {
                                 ((JumpInsnNode) node).setOpcode(Opcodes.IFLT);
                                 break;
                             }
-                        }
-                        break;
-                    }
-                }
-
-                return writeClass(classNode);
-            }
-            case "twilightforest.client.TFClientProxy" -> {
-                ClassNode classNode = new ClassNode();
-                new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
-
-                for (MethodNode method : classNode.methods) {
-                    if (method.name.equals("doOnLoadRegistration")) {
-                        for (AbstractInsnNode node : method.instructions.toArray()) {
-                            tryReplaceInstance(
-                                node,
-                                "twilightforest/client/model/ModelTFDeer",
-                                Type.getInternalName(NewModelTFDeer.class));
-                            tryReplaceInstance(
-                                node,
-                                "twilightforest/client/model/ModelTFBighorn",
-                                Type.getInternalName(NewModelTFBighorn.class));
-                            tryReplaceInstance(
-                                node,
-                                "twilightforest/client/model/ModelTFBighornFur",
-                                Type.getInternalName(NewModelTFBighornFur.class));
                         }
                         break;
                     }
@@ -111,28 +78,6 @@ public class ClassTransformer implements IClassTransformer {
                                 node,
                                 Type.getInternalName(ItemGoggles.class),
                                 Type.getInternalName(BaubleItemGoggles.class));
-                        }
-                        break;
-                    }
-                }
-
-                return writeClass(classNode);
-            }
-            case "vazkii.botania.client.core.proxy.ClientProxy" -> {
-                ClassNode classNode = new ClassNode();
-                new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
-
-                for (MethodNode method : classNode.methods) {
-                    if (method.name.equals("initRenderers")) {
-                        for (AbstractInsnNode node : method.instructions.toArray()) {
-                            tryReplaceInstance(
-                                node,
-                                Type.getInternalName(RenderTilePylon.class),
-                                Type.getInternalName(NewRenderTilePylon.class));
-                            tryReplaceInstance(
-                                node,
-                                Type.getInternalName(RenderPylon.class),
-                                Type.getInternalName(NewRenderPylon.class));
                         }
                         break;
                     }

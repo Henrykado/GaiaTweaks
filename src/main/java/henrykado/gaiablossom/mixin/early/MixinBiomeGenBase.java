@@ -2,7 +2,7 @@ package henrykado.gaiablossom.mixin.early;
 
 import java.util.List;
 
-import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BiomeGenBase.class)
 public class MixinBiomeGenBase {
+
     @Shadow
     protected List<net.minecraft.world.biome.BiomeGenBase.SpawnListEntry> spawnableMonsterList;
 
@@ -21,8 +22,10 @@ public class MixinBiomeGenBase {
 
     @Inject(method = "<init>(IZ)V", at = @At("TAIL"))
     public void constructorInject(int id, boolean register, CallbackInfo ci) {
-        spawnableWaterCreatureList.clear();
-        spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySquid.class, 16, 1, 4));
+        // spawnableWaterCreatureList.clear();
+        // spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySquid.class, 16, 1, 4));
         spawnableMonsterList.remove(6); // Witch
+        spawnableMonsterList.remove(5); // Enderman
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 15, 1, 4));
     }
 }

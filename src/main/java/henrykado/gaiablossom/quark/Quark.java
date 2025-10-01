@@ -30,33 +30,34 @@ public class Quark {
         biomes.add(
             new UndergroundBiomeGenerator(
                 new UndergroundBiomeSandstone(),
+                8,
+                32,
+                12,
+                32,
+                12,
+                6,
+                12,
+                30,
+                54,
+                BiomeDictionary.Type.SANDY));
+        addUndergroundBiome(new UndergroundBiomeSlime(), BiomeDictionary.Type.SWAMP, 15, 16, 10);
+        addUndergroundBiome(new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE, 8, 22, 10);
+        addUndergroundBiome(new UndergroundBiomeOvergrown(), BiomeDictionary.Type.CONIFEROUS, 40, 16, 10);
+        addUndergroundBiome(new UndergroundBiomeSpiderNest(), BiomeDictionary.Type.PLAINS, 80, 16, 10);
+        // addUndergroundBiome(new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY, 15, 26, 10);
+        biomes.add(
+            new UndergroundBiomeGenerator(
+                new UndergroundBiomeIcy(),
+                12,
+                32,
                 10,
                 32,
                 12,
-                32,
+                4,
                 12,
-                6,
-                12,
-                30,
+                38,
                 58,
-                BiomeDictionary.Type.SANDY));
-        addUndergroundBiome(new UndergroundBiomeSlime(), BiomeDictionary.Type.SWAMP);
-        addUndergroundBiome(new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE);
-        addUndergroundBiome(new UndergroundBiomeOvergrown(), BiomeDictionary.Type.FOREST);
-        biomes.add(
-            new UndergroundBiomeGenerator(
-                new UndergroundBiomeSpiderNest(),
-                80,
-                26,
-                12,
-                26,
-                14,
-                6,
-                14,
-                30,
-                58,
-                BiomeDictionary.Type.PLAINS));
-        addUndergroundBiome(new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY);
+                BiomeDictionary.Type.SNOWY));
 
         icystone = new ModBlock(Material.rock).setHardness(2.0F)
             .setResistance(10.0F)
@@ -68,8 +69,21 @@ public class Quark {
             .setBlockName("cobbedstone");
     }
 
-    public static void addUndergroundBiome(UndergroundBiome biome, BiomeDictionary.Type type) {
-        biomes.add(new UndergroundBiomeGenerator(biome, 15, 26, 12, 26, 14, 6, 14, 30, 54, type));
+    public static void addUndergroundBiome(UndergroundBiome biome, BiomeDictionary.Type type, int rarity, int minXZSize,
+        int xzVariation) {
+        biomes.add(
+            new UndergroundBiomeGenerator(
+                biome,
+                rarity,
+                minXZSize,
+                10,
+                minXZSize,
+                xzVariation,
+                6,
+                xzVariation,
+                26,
+                54,
+                type));
     }
 
     public static void init() {

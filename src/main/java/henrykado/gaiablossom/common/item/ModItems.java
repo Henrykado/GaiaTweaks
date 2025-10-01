@@ -17,6 +17,7 @@ public class ModItems {
 
     public static Item invisibilityCloak;
     public static Item cloudPendant;
+    public static Item dodgeRing;
 
     public static void init() {
         recall_potion = new RecallPotion();
@@ -24,6 +25,7 @@ public class ModItems {
 
         invisibilityCloak = new ItemInvisibilityCloak();
         cloudPendant = new ItemCloudPendant();
+        dodgeRing = new ItemDodgeRing();
 
         GameRegistry.registerItem(living_wood_item_frame, "gaiablossom:living_frame");
     }

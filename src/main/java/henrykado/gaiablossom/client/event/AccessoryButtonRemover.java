@@ -10,7 +10,6 @@ import com.gildedgames.the_aether.client.gui.button.GuiAccessoryButton;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-
 public class AccessoryButtonRemover {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

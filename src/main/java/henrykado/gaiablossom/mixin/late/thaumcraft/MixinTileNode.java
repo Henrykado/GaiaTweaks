@@ -16,7 +16,7 @@ import thaumcraft.common.tiles.TileNode;
 @Mixin(TileNode.class)
 public class MixinTileNode {
 
-    @Inject(method = "updateEntity", at = @At("TAIL"), remap = false)
+    @Inject(method = "func_145845_h", at = @At("TAIL"))
     private void updateEntityInject(CallbackInfo ci) {
         TileNode node = (TileNode) (Object) this;
         World world = node.getWorldObj();

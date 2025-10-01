@@ -24,17 +24,17 @@ public class UndergroundBiomeSlime extends BasicUndergroundBiome {
             case 1:
             case 2:
                 // setBlock = setBlock.withProperty(BlockColored.COLOR, EnumDyeColor.GREEN);
-                setMeta = 2;
+                setMeta = 13;
                 break;
             case 3:
             case 4:
             case 5:
                 // setBlock = setBlock.withProperty(BlockColored.COLOR, EnumDyeColor.LIME);
-                setMeta = 10;
+                setMeta = 5;
                 break;
             case 6:
                 // setBlock = setBlock.withProperty(BlockColored.COLOR, EnumDyeColor.LIGHT_BLUE);
-                setMeta = 12;
+                setMeta = 3;
         }
 
         world.setBlock(x, y, z, setBlock, setMeta, 2);
@@ -50,12 +50,11 @@ public class UndergroundBiomeSlime extends BasicUndergroundBiome {
         if (waterFloor) world.setBlock(x, y, z, floorBlock, floorMeta, 3);
         else fillCeiling(world, x, y, z, block);
 
-        if (world.rand.nextDouble() < slimeBlockChance) world.setBlock(x, y, z, ModBlocks.SLIME.get());
+        if (world.rand.nextDouble() < 0.05) world.setBlock(x, y, z, ModBlocks.SLIME.get());
     }
 
     static {
-        slimeBlockChance = 0.085;
-        waterFloor = true;
+        waterFloor = false;
     }
 
 }

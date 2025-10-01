@@ -16,7 +16,7 @@ import thaumcraft.client.renderers.tile.TileNodeRenderer;
 public class MixinTileNodeRenderer {
 
     @Redirect(
-        method = "renderTileEntityAt",
+        method = "func_147500_a",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/entity/player/InventoryPlayer;armorItemInSlot(I)Lnet/minecraft/item/ItemStack;"))

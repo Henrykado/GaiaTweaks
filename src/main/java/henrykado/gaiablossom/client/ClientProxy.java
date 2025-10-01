@@ -2,16 +2,21 @@ package henrykado.gaiablossom.client;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import henrykado.gaiablossom.CommonProxy;
 import henrykado.gaiablossom.client.event.AccessoryButtonRemover;
 import henrykado.gaiablossom.client.event.AchievementKeyHandler;
 import henrykado.gaiablossom.client.event.RenderEventHandler;
 import henrykado.gaiablossom.client.gui.AchievementTab;
 import henrykado.gaiablossom.client.gui.HealthBarRenderer;
+import henrykado.gaiablossom.client.render.RenderLivingWoodItemFrame;
+import henrykado.gaiablossom.common.entity.EntityLivingWoodItemFrame;
+import henrykado.gaiablossom.common.item.ModItems;
 
 public class ClientProxy extends CommonProxy {
 
@@ -19,8 +24,20 @@ public class ClientProxy extends CommonProxy {
     // Don't forget to call the super methods as well.
 
     @Override
+    public void preInit(FMLPreInitializationEvent event) {
+        super.preInit(event);
+
+        RenderingRegistry
+            .registerEntityRenderingHandler(EntityLivingWoodItemFrame.class, new RenderLivingWoodItemFrame());
+    }
+
+    @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+
+        FMLCommonHandler.instance()
+            .bus()
+            .register(ModItems.dodgeRing);
 
         if (!Loader.isModLoaded("TConstruct")) {
             final HealthBarRenderer healthBarRenderer = new HealthBarRenderer();

@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import henrykado.gaiablossom.event.eep.SkeletonProperties;
+import henrykado.gaiablossom.common.entity.eep.SkeletonProperties;
 import io.netty.buffer.ByteBuf;
 
 public class SkeletonPacket implements IMessage {

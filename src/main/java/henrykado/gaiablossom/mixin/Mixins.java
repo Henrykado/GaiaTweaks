@@ -13,34 +13,49 @@ import henrykado.gaiablossom.GaiaBlossom;
 // Code adapted from GTNH Lib
 public enum Mixins {
 
-    CONSTANT_TEMPT(Phase.EARLY, Side.BOTH, "MixinEntityAITempt"),
-    MIXIN_PLAYER(Phase.EARLY, Side.BOTH, "MixinEntityPlayer"),
-    SKELETON_BETTERBOW(Phase.EARLY, Side.BOTH, "MixinEntitySkeleton"),
-    SKELETON_BETTERBOW_PACKET(Phase.EARLY, Side.BOTH, "MixinEntityAIArrowAttack"),
-    EASIER_BLAZE(Phase.EARLY, Side.BOTH, "MixinEntityBlaze"),
-    MOB_SPAWN_TWEAKS(Phase.EARLY, Side.BOTH, "MixinBiomeGenBase"),
-    LESS_BEEF(Phase.EARLY, Side.BOTH, "MixinEntityCow"),
-    SWAMP_WITCHES(Phase.EARLY, Side.BOTH, "MixinBiomeGenSwamp"),
+    CONSTANT_TEMPT(Phase.EARLY, Side.BOTH, "entity.MixinEntityAITempt"),
+    MIXIN_PLAYER(Phase.EARLY, Side.BOTH, "entity.MixinEntityPlayer"),
+    SKELETON_BETTERBOW(Phase.EARLY, Side.BOTH, "entity.MixinEntitySkeleton"),
+    SKELETON_BETTERBOW_PACKET(Phase.EARLY, Side.BOTH, "entity.MixinEntityAIArrowAttack"),
+    EASIER_BLAZE(Phase.EARLY, Side.BOTH, "entity.MixinEntityBlaze"),
+    // TALLER_TREES(Phase.EARLY, Side.BOTH, "MixinWorldGenForest"),
+    // MOB_SPAWN_TWEAKS(Phase.EARLY, Side.BOTH, "MixinBiomeGenBase"),
 
+    LESS_BEEF(Phase.EARLY, Side.BOTH, "entity.MixinEntityCow"),
+    FAST_FOODS(Phase.EARLY, Side.BOTH, "MixinItemFood"),
     WOLF_SKINS(Phase.EARLY, Side.CLIENT, "MixinRenderWolf"),
     CHANGE_MIN_SPRINT_HUNGER(Phase.EARLY, Side.CLIENT, "MixinEntityPlayerSP"),
 
     AETHER_BAUBLES_INTEGRATION(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinInventoryAccessories"),
+    AETHER_HIGHER_WHALE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityAerwhale"),
+    AETHER_AERBUNNY_TWEAKS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityAerbunny"),
+    AETHER_ZEPHYR_YROTFIX(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityZephyr"),
+    AETHER_ZEPHYR_YROTFIX2(Phase.LATE, Side.CLIENT, TargetedMod.AETHER, "aether.entity.MixinZephyrModel"),
+    AETHER_THEBETTERMIMIC(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinBlockMimicChest"),
+    AETHER_SILENTVALKYRIE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrie"),
+    AETHER_SILENTVALKYRIEQUEEN(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrieQueen"),
+    AETHER_AMBROSIUMSTACKSIZE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinAmbrosium"),
 
     THAUMCRAFT_NODE_ORESPAWNING(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileNode"),
     THAUMCRAFT_FIX_HEAD_GOGGLES(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, "thaumcraft.MixinRenderEventHandler"),
     THAUMCRAFT_FIX_HEAD_GOGGLES2(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileNodeRenderer"),
+    THAUMCRAFT_TAINTED_TREES(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinBiomeGenTaint"),
+    THAUMCRAFT_TAINTWOOD_SPREAD(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinBlockTaintFibres"),
+    THAUMCRAFT_GREATWOOD_BLACKLIST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinWorldGenGreatwood"),
+    THAUMCRAFT_ELEMENTAL_TRIBOW(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumEntityHandler"),
+    THAUMCRAFT_FIX_PEDESTAL(Phase.LATE, Side.CLIENT, new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.ANGELICA },
+        "thaumcraft.MixinTilePedestalRenderer"),
 
-    /*
-     * BOTANIA_BETTER_ENCHANTER_MULTIBLOCK(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT,
-     * "thaumcraft.MixinTileNodeRenderer"),
-     */
-    // BOTANIA_NEWACHIEVEMENT(Phase.LATE, Side.BOTH, TargetedMod.BOTANIA, "botania.MixinAchievements"),
-    BOTANIA_MODTWEAKER_FIX(Phase.LATE, Side.CLIENT, TargetedMod.BOTANIA, "botania.MixinLexiconEntry"),
-    BOTANIA_REDSTONE_HOURGLASS(Phase.LATE, Side.BOTH, TargetedMod.BOTANIA, "botania.MixinTileHourglass"),
+    PMOBS_RAIN_ROCKETCREEPER(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinRocketCreeper"),
+    PMOBS_NETHER_FESTIVECREEPER(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS,
+        "primitive.MixinPrimitiveMobsSpawning"),
+    PMOBS_DIMENSION_BLACKLIST(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPMDimensionBlacklist"),
+    PMOBS_DIMENSION_BLACKLIST2(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS,
+        "primitive.MixinPMDimensionBlacklist2"),
+    // PMOBS_HIDEACHIEVEMENTS(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPrimitiveMobs"),
 
-    TWILIGHTF_NEW_DEER_MODEL(Phase.LATE, Side.CLIENT, TargetedMod.TWILIGHTFOREST, "twilightforest.MixinRenderTFDeer"),
-
+    BATTLETOWERS_BALANCEDDROPS(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "MixinBTGolem"),
+    BATTLETOWERS_REMOVENETHERTOWER(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "MixinWorldGenTower"),
     HAMMERZ_REMOVETORCHTHINGY(Phase.LATE, Side.BOTH, TargetedMod.HAMMERZ, "MixinHammer");
 
     private final List<String> mixinClasses;
@@ -163,9 +178,12 @@ public enum Mixins {
 
         AETHER("aether_legacy"),
         TWILIGHTFOREST("TwilightForest"),
-        BOTANIA("botania"),
+        BOTANIA("Botania"),
         BAUBLES("Baubles"),
         HAMMERZ("hammerz"),
+        BATTLETOWERS("BattleTowers"),
+        PRIMITIVE_MOBS("primitivemobs"),
+        ANGELICA("angelica"),
         THAUMCRAFT("Thaumcraft"); // "thaumcraft.codechicken.core.launch.DepLoader"
 
         public final String coreModClass;

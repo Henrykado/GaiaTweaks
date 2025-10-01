@@ -3,6 +3,8 @@ package henrykado.gaiablossom.event;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -12,12 +14,13 @@ import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import henrykado.gaiablossom.Config;
-import henrykado.gaiablossom.event.eep.GaiaPlayer;
+import henrykado.gaiablossom.common.entity.eep.GaiaPlayer;
 import squeek.applecore.api.AppleCoreAPI;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.hunger.ExhaustionEvent;
 import squeek.applecore.api.hunger.HealthRegenEvent;
 import squeek.applecore.api.hunger.StarvationEvent;
+import thaumcraft.common.lib.potions.PotionUnnaturalHunger;
 
 public class PlayerEventHandler {
 
@@ -53,16 +56,25 @@ public class PlayerEventHandler {
     }
 
     int resetStaminaTimer(int hunger) {
-        return 200;//(int) (150 + ((20 - hunger) * 15));
+        return 200;// (int) (150 + ((20 - hunger) * 15));
     }
 
     @SubscribeEvent
     public void onPlayerUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.entity instanceof EntityPlayer player) {
+            if (player.isOnLadder() && !player.isSneaking()) {
+                /*
+                 * if (player.rotationPitch > 0 && player.moveForward == 0) { // looking down
+                 * player.moveEntity(0, (float) Math.abs(player.rotationPitch / 90.0) * (climbSpeedModifier / 10f), 0);
+                 * } else
+                 */ if (player.rotationPitch < 0 && player.moveForward > 0) { // looking up
+                    player.moveEntity(0, (float) Math.abs(player.rotationPitch / 90.0) * 0.14, 0);
+                }
+            }
+
             if (!event.entity.worldObj.isRemote && !player.isSprinting()) {
                 GaiaPlayer playerProperties = GaiaPlayer.get(event.entity);
-                playerProperties.staminaTimer--;
-                if (playerProperties.staminaTimer == 0) {
+                if (playerProperties != null && playerProperties.staminaTimer-- == 0) {
                     int hunger = player.getFoodStats()
                         .getFoodLevel();
                     playerProperties.staminaTimer = resetStaminaTimer(hunger);
@@ -84,23 +96,31 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void foodHealing(FoodEvent.FoodStatsAddition event) {
-        EntityPlayer player = event.player;
-        int hunger = player.getFoodStats()
-            .getFoodLevel();
+        Item foodItem = event.player.itemInUse == null ? null : event.player.itemInUse.getItem();
 
-        if (hunger < 20) {
-            AppleCoreAPI.mutator.setHunger(event.player, Math.min(hunger + event.foodValuesToBeAdded.hunger, 20));
-            AppleCoreAPI.mutator.setSaturation(
-                player,
-                Math.min(
-                    player.getFoodStats()
-                        .getSaturationLevel() + (float) hunger * event.foodValuesToBeAdded.saturationModifier * 2.0F,
-                    (float) hunger));
+        for (String s : Config.foodBuffs) {
+            String[] split = s.split(":");
+            String itemName = split[0];
+            int effectID = Integer.parseInt(split[1]);
+            int duration = Integer.parseInt(split[2]);
+
+            if (foodItem != null && foodItem.equals(Item.itemRegistry.getObject(itemName))) {
+                event.player.addPotionEffect(new PotionEffect(effectID, duration * 20, 0, true));
+            }
+        }
+
+        for (String s : Config.foodHealValues) {
+            String[] split = s.split(":");
+            String itemName = split[0];
+            int healAmount = Integer.parseInt(split[1]);
+
+            if (foodItem != null && foodItem.equals(Item.itemRegistry.getObject(itemName))) {
+                event.player.heal((float) healAmount);
+                return;
+            }
         }
 
         event.player.heal((float) event.foodValuesToBeAdded.hunger * Config.healMultiplier);
-
-        event.setCanceled(true);
     }
 
     @SubscribeEvent
@@ -110,6 +130,10 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void disableStarvation(StarvationEvent.AllowStarvation event) {
+        if (event.player.isPotionActive(PotionUnnaturalHunger.instance)) {
+            event.setResult(Event.Result.DEFAULT);
+            return;
+        }
         event.setResult(Event.Result.DENY);
     }
 
