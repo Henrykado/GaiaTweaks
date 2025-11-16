@@ -72,7 +72,7 @@ public class PlayerEventHandler {
                 }
             }
 
-            if (!event.entity.worldObj.isRemote && !player.isSprinting()) {
+            if (!event.entity.worldObj.isRemote && !player.isSprinting() && Config.enableStaminaSystem) {
                 GaiaPlayer playerProperties = GaiaPlayer.get(event.entity);
                 if (playerProperties != null && playerProperties.staminaTimer-- == 0) {
                     int hunger = player.getFoodStats()
@@ -86,7 +86,7 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void onExhausted(ExhaustionEvent.Exhausted event) {
-        if (!event.player.worldObj.isRemote) {
+        if (!event.player.worldObj.isRemote && Config.enableStaminaSystem) {
             GaiaPlayer playerProperties = GaiaPlayer.get(event.player);
             playerProperties.staminaTimer = resetStaminaTimer(
                 event.player.getFoodStats()
@@ -96,6 +96,8 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void foodHealing(FoodEvent.FoodStatsAddition event) {
+        if (!Config.enableStaminaSystem) return;
+
         Item foodItem = event.player.itemInUse == null ? null : event.player.itemInUse.getItem();
 
         for (String s : Config.foodBuffs) {
@@ -121,16 +123,19 @@ public class PlayerEventHandler {
         }
 
         event.player.heal((float) event.foodValuesToBeAdded.hunger * Config.healMultiplier);
+
+        if (!event.player.getFoodStats()
+            .needFood()) event.setCanceled(true);
     }
 
     @SubscribeEvent
     public void disableHungerHealthRegen(HealthRegenEvent.AllowRegen event) {
-        event.setResult(Event.Result.DENY);
+        event.setResult(Config.enableStaminaSystem ? Event.Result.DENY : Event.Result.DEFAULT);
     }
 
     @SubscribeEvent
     public void disableStarvation(StarvationEvent.AllowStarvation event) {
-        if (event.player.isPotionActive(PotionUnnaturalHunger.instance)) {
+        if (event.player.isPotionActive(PotionUnnaturalHunger.instance) || !Config.enableStaminaSystem) {
             event.setResult(Event.Result.DEFAULT);
             return;
         }

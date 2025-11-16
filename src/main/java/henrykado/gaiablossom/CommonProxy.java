@@ -10,11 +10,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import henrykado.gaiablossom.common.block.ModBlock;
 import henrykado.gaiablossom.common.enchantment.EnchantmentGrowth;
 import henrykado.gaiablossom.common.entity.ModEntityList;
+import henrykado.gaiablossom.common.entity.eep.ExtendedPropertiesHandler;
 import henrykado.gaiablossom.common.item.ModItems;
 import henrykado.gaiablossom.event.AnvilEventHandler;
 import henrykado.gaiablossom.event.PlayerEventHandler;
 import henrykado.gaiablossom.event.WorldEventHandler;
-import henrykado.gaiablossom.common.entity.eep.ExtendedPropertiesHandler;
 import henrykado.gaiablossom.network.GaiaPacketHandler;
 import henrykado.gaiablossom.quark.Quark;
 

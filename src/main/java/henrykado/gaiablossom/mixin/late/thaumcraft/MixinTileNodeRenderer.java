@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import baubles.api.expanded.BaubleExpandedSlots;
 import henrykado.gaiablossom.util.BaublesUtils;
 import thaumcraft.api.IGoggles;
+import thaumcraft.api.nodes.IRevealer;
 import thaumcraft.client.renderers.tile.TileNodeRenderer;
 
 @Mixin(TileNodeRenderer.class)
@@ -22,7 +23,7 @@ public class MixinTileNodeRenderer {
             target = "Lnet/minecraft/entity/player/InventoryPlayer;armorItemInSlot(I)Lnet/minecraft/item/ItemStack;"))
     public ItemStack getGogglesRedirect(InventoryPlayer instance, int slot) {
         ItemStack helmetStack = instance.armorItemInSlot(slot);
-        if (helmetStack != null && helmetStack.getItem() instanceof IGoggles) {
+        if (helmetStack != null && helmetStack.getItem() instanceof IRevealer) {
             return instance.armorItemInSlot(slot);
         } else {
             ItemStack stack = BaublesUtils.getStackInFirstSlotOfType(instance.player, BaubleExpandedSlots.headType);

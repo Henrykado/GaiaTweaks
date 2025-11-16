@@ -1,7 +1,6 @@
 package henrykado.gaiablossom.mixin.late.primitive;
 
 import net.daveyx0.primitivemobs.core.PrimitiveMobsEntitySpawning;
-import net.daveyx0.primitivemobs.entity.monster.EntityFestiveCreeper;
 import net.minecraft.entity.EnumCreatureType;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,10 +21,6 @@ public abstract class MixinPrimitiveMobsSpawning {
             target = "Lnet/daveyx0/primitivemobs/core/PrimitiveMobsEntitySpawning;addRegularMobSpawns(Ljava/lang/Class;FII)V"),
         remap = false)
     private static void addRegularMobSpawningRedirect(Class entityClass, float weightedProb, int min, int max) {
-        if (entityClass == EntityFestiveCreeper.class) {
-            PrimitiveMobsEntitySpawning.addNetherMobSpawns(entityClass, weightedProb, min, max);
-            return;
-        }
         PrimitiveMobsEntitySpawning.addRegularMobSpawns(entityClass, weightedProb, min, max);
 
         EntityRegistry.removeSpawn(entityClass, EnumCreatureType.monster, AetherWorld.aether_biome);

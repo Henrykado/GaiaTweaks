@@ -50,7 +50,5 @@ public class GaiaBlossom {
 
     @Mod.EventHandler
     // register server commands in this event handler (Remove if not needed)
-    public void serverStarting(FMLServerStartingEvent event) {
-        proxy.serverStarting(event);
-    }
+    public void serverStarting(FMLServerStartingEvent event) {}
 }

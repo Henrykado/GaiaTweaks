@@ -38,7 +38,7 @@ public abstract class MixinBlockMimicChest extends BlockChest {
                 world.playSoundAtEntity(mimic, "random.chestopen", 1.0F, 1.0F);
                 player.addStat(PrimitiveMobsAchievementPage.mimicFake, 1);
                 if (this.blossom_of_Gaia$rand.nextInt(2) == 0) {
-                    mimic.setMimic(2 + this.blossom_of_Gaia$rand.nextInt(6));
+                    mimic.setMimic(2 + this.blossom_of_Gaia$rand.nextInt(5));
                 } else {
                     mimic.setMimic(1);
                 }

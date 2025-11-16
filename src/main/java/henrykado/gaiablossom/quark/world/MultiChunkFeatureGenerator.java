@@ -43,7 +43,7 @@ public abstract class MultiChunkFeatureGenerator {
     }
 
     public boolean canGenerate(World world) {
-        return true;
+        return world.provider.dimensionId == 0;
     }
 
     public boolean shouldOffset() {

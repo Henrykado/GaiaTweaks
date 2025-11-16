@@ -23,8 +23,12 @@ public enum Mixins {
 
     LESS_BEEF(Phase.EARLY, Side.BOTH, "entity.MixinEntityCow"),
     FAST_FOODS(Phase.EARLY, Side.BOTH, "MixinItemFood"),
-    WOLF_SKINS(Phase.EARLY, Side.CLIENT, "MixinRenderWolf"),
-    CHANGE_MIN_SPRINT_HUNGER(Phase.EARLY, Side.CLIENT, "MixinEntityPlayerSP"),
+    WOLF_SKINS(Phase.EARLY, Side.CLIENT, "client.MixinRenderWolf"),
+    CHANGE_MIN_SPRINT_HUNGER(Phase.EARLY, Side.CLIENT, "client.MixinEntityPlayerSP"),
+    ITEMFRAME_BACKPORT(Phase.EARLY, Side.BOTH, "itemframe.MixinEntityItemFrame"),
+    ITEMFRAME_BACKPORT2(Phase.EARLY, Side.CLIENT, "itemframe.MixinRenderItemFrame"),
+
+    BOTANIA_ITEMFRAME_BACKPORT3(Phase.LATE, Side.BOTH, TargetedMod.BOTANIA, "MixinCorporeaFunnel"),
 
     AETHER_BAUBLES_INTEGRATION(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinInventoryAccessories"),
     AETHER_HIGHER_WHALE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityAerwhale"),
@@ -33,7 +37,7 @@ public enum Mixins {
     AETHER_ZEPHYR_YROTFIX2(Phase.LATE, Side.CLIENT, TargetedMod.AETHER, "aether.entity.MixinZephyrModel"),
     AETHER_THEBETTERMIMIC(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinBlockMimicChest"),
     AETHER_SILENTVALKYRIE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrie"),
-    AETHER_SILENTVALKYRIEQUEEN(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrieQueen"),
+    // AETHER_SILENTVALKYRIEQUEEN(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrieQueen"),
     AETHER_AMBROSIUMSTACKSIZE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinAmbrosium"),
 
     THAUMCRAFT_NODE_ORESPAWNING(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileNode"),
@@ -43,16 +47,16 @@ public enum Mixins {
     THAUMCRAFT_TAINTWOOD_SPREAD(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinBlockTaintFibres"),
     THAUMCRAFT_GREATWOOD_BLACKLIST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinWorldGenGreatwood"),
     THAUMCRAFT_ELEMENTAL_TRIBOW(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumEntityHandler"),
+    THAUMCRAFT_FIX_THAUMOMETER(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumometer"),
     THAUMCRAFT_FIX_PEDESTAL(Phase.LATE, Side.CLIENT, new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.ANGELICA },
         "thaumcraft.MixinTilePedestalRenderer"),
 
     PMOBS_RAIN_ROCKETCREEPER(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinRocketCreeper"),
-    PMOBS_NETHER_FESTIVECREEPER(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS,
-        "primitive.MixinPrimitiveMobsSpawning"),
     PMOBS_DIMENSION_BLACKLIST(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPMDimensionBlacklist"),
     PMOBS_DIMENSION_BLACKLIST2(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS,
         "primitive.MixinPMDimensionBlacklist2"),
-    // PMOBS_HIDEACHIEVEMENTS(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPrimitiveMobs"),
+    PMOBS_HIDEACHIEVEMENTS(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPrimitiveMobs"),
+    PMOBS_HIDEACHIEVEMENTS2(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinPMAchievements"),
 
     BATTLETOWERS_BALANCEDDROPS(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "MixinBTGolem"),
     BATTLETOWERS_REMOVENETHERTOWER(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "MixinWorldGenTower"),
@@ -93,9 +97,6 @@ public enum Mixins {
     private List<String> mixinClassesArray2List(String[] mixinClasses) {
         if (phase.equals(Phase.EARLY)) {
             for (int i = 0; i < mixinClasses.length; i++) {
-                if (side.equals(Side.CLIENT)) {
-                    mixinClasses[i] = "client." + mixinClasses[i];
-                }
                 mixinClasses[i] = "early." + mixinClasses[i];
             }
         } else {

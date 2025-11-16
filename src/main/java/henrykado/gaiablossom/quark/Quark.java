@@ -27,37 +27,12 @@ public class Quark {
     public static Block cobbedstone;
 
     public static void preInit() {
-        biomes.add(
-            new UndergroundBiomeGenerator(
-                new UndergroundBiomeSandstone(),
-                8,
-                32,
-                12,
-                32,
-                12,
-                6,
-                12,
-                30,
-                54,
-                BiomeDictionary.Type.SANDY));
+        addUndergroundBiome(new UndergroundBiomeSandstone(), BiomeDictionary.Type.SANDY, 8, 32, 12);
         addUndergroundBiome(new UndergroundBiomeSlime(), BiomeDictionary.Type.SWAMP, 15, 16, 10);
         addUndergroundBiome(new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE, 8, 22, 10);
         addUndergroundBiome(new UndergroundBiomeOvergrown(), BiomeDictionary.Type.CONIFEROUS, 40, 16, 10);
         addUndergroundBiome(new UndergroundBiomeSpiderNest(), BiomeDictionary.Type.PLAINS, 80, 16, 10);
-        // addUndergroundBiome(new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY, 15, 26, 10);
-        biomes.add(
-            new UndergroundBiomeGenerator(
-                new UndergroundBiomeIcy(),
-                12,
-                32,
-                10,
-                32,
-                12,
-                4,
-                12,
-                38,
-                58,
-                BiomeDictionary.Type.SNOWY));
+        addUndergroundBiome(new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY, 15, 26, 14);
 
         icystone = new ModBlock(Material.rock).setHardness(2.0F)
             .setResistance(10.0F)
@@ -79,10 +54,10 @@ public class Quark {
                 10,
                 minXZSize,
                 xzVariation,
-                6,
+                7,
                 xzVariation,
-                26,
-                54,
+                18 + 8,
+                48 - 8,
                 type));
     }
 

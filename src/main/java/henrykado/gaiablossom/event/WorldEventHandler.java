@@ -39,8 +39,6 @@ public class WorldEventHandler {
             World world = event.world;
             int chunkX = event.worldX;
             int chunkZ = event.worldZ;
-            // GaiaBlossom.LOG.info("chunkX: {}", chunkX);
-            // GaiaBlossom.LOG.info("chunkZ: {}", chunkZ);
 
             Chunk chunk = world.getChunkFromBlockCoords(chunkX, chunkZ);
 

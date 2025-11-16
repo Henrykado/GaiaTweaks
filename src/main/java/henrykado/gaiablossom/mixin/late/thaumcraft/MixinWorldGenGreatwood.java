@@ -20,8 +20,9 @@ public abstract class MixinWorldGenGreatwood extends WorldGenerator {
     @Shadow
     private World worldObj;
 
-    @Inject(method = "validTreeLocation", at = @At("HEAD"), remap = false)
+    @Inject(method = "validTreeLocation", at = @At("HEAD"), remap = false, cancellable = true)
     public void validTreeLocationInject(CallbackInfoReturnable<Boolean> cir) {
-        if (worldObj.provider.dimensionId == AetherConfig.getAetherDimensionID() || worldObj.provider.dimensionId == TwilightForestMod.dimensionID) cir.setReturnValue(false);
+        if (worldObj.provider.dimensionId == AetherConfig.getAetherDimensionID()
+            || worldObj.provider.dimensionId == TwilightForestMod.dimensionID) cir.setReturnValue(false);
     }
 }
