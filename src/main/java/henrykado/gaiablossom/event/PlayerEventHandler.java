@@ -10,7 +10,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.common.entity.eep.GaiaPlayer;
 import squeek.applecore.api.AppleCoreAPI;
@@ -61,7 +60,7 @@ public class PlayerEventHandler {
     @SubscribeEvent
     public void onPlayerUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.entity instanceof EntityPlayer player) {
-            if (player.isOnLadder() && !player.isSneaking()) {
+            if (Config.enableFasterLadders && player.isOnLadder() && !player.isSneaking()) {
                 /*
                  * if (player.rotationPitch > 0 && player.moveForward == 0) { // looking down
                  * player.moveEntity(0, (float) Math.abs(player.rotationPitch / 90.0) * (climbSpeedModifier / 10f), 0);
@@ -96,8 +95,6 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void foodHealing(FoodEvent.FoodStatsAddition event) {
-        if (!Config.enableStaminaSystem) return;
-
         Item foodItem = event.player.itemInUse == null ? null : event.player.itemInUse.getItem();
 
         for (String s : Config.foodBuffs) {
@@ -110,6 +107,8 @@ public class PlayerEventHandler {
                 event.player.addPotionEffect(new PotionEffect(effectID, duration * 20, 0, true));
             }
         }
+
+        if (!Config.enableStaminaSystem) return;
 
         for (String s : Config.foodHealValues) {
             String[] split = s.split(":");
@@ -151,10 +150,12 @@ public class PlayerEventHandler {
      * }
      */
 
-    @SubscribeEvent
-    public void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        GaiaPlayer.recalculateHealth(event.player, GaiaPlayer.get(event.player));
-    }
+    /*
+     * @SubscribeEvent
+     * public void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+     * GaiaPlayer.recalculateHealth(event.player, GaiaPlayer.get(event.player));
+     * }
+     */
 
     // Wood tools
     /*

@@ -1,11 +1,8 @@
 package henrykado.gaiablossom.mixin.early.entity;
 
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
 import net.minecraft.world.World;
 
@@ -14,14 +11,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.llamalad7.mixinextras.sugar.Local;
 
-import henrykado.gaiablossom.CommonProxy;
 import henrykado.gaiablossom.Config;
-import henrykado.gaiablossom.common.entity.eep.GaiaPlayer;
 
 @Mixin(EntityPlayer.class)
 public abstract class MixinEntityPlayer extends EntityLivingBase {
@@ -66,12 +60,14 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
         if (Config.enableStaminaSystem) cir.setReturnValue(flag);
     }
 
-    @Inject(method = "setCurrentItemOrArmor(ILnet/minecraft/item/ItemStack;)V", at = @At(value = "HEAD"))
-    public void setCurrentItemOrArmorInject(int slotIn, ItemStack itemStackIn, CallbackInfo ci) {
-        if (itemStackIn != null && itemStackIn.getItem() instanceof ItemArmor
-            && EnchantmentHelper.getEnchantmentLevel(CommonProxy.growth.effectId, itemStackIn) > 0) {
-            EntityPlayer entityPlayer = (EntityPlayer) (Object) this;
-            GaiaPlayer.recalculateHealth(entityPlayer, GaiaPlayer.get(entityPlayer), itemStackIn, slotIn);
-        }
-    }
+    /*
+     * @Inject(method = "setCurrentItemOrArmor(ILnet/minecraft/item/ItemStack;)V", at = @At(value = "HEAD"))
+     * public void setCurrentItemOrArmorInject(int slotIn, ItemStack itemStackIn, CallbackInfo ci) {
+     * if (itemStackIn != null && itemStackIn.getItem() instanceof ItemArmor
+     * && EnchantmentHelper.getEnchantmentLevel(CommonProxy.growth.effectId, itemStackIn) > 0) {
+     * EntityPlayer entityPlayer = (EntityPlayer) (Object) this;
+     * GaiaPlayer.recalculateHealth(entityPlayer, GaiaPlayer.get(entityPlayer), itemStackIn, slotIn);
+     * }
+     * }
+     */
 }

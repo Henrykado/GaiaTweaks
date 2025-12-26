@@ -14,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import henrykado.gaiablossom.Config;
-
 @Mixin(value = BlockCrops.class, remap = false)
 public abstract class MixinBlockCrops extends BlockBush {
 
@@ -25,19 +23,17 @@ public abstract class MixinBlockCrops extends BlockBush {
     @Inject(method = "getDrops", at = @At("HEAD"), cancellable = true)
     public void getDropsInject(World world, int x, int y, int z, int metadata, int fortune,
         CallbackInfoReturnable<ArrayList<ItemStack>> cir) {
-        if (Config.slowerCropGrowth) {
-            ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
+        ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
-            if (metadata >= 7) {
-                ret.add(new ItemStack(this.func_149866_i(), 1, 0));
-                for (int i = 0; i < 1 + fortune; ++i) {
-                    if (world.rand.nextInt(28) <= metadata) {
-                        ret.add(new ItemStack(this.func_149866_i(), 1, 0));
-                    }
+        if (metadata >= 7) {
+            ret.add(new ItemStack(this.func_149866_i(), 1, 0));
+            for (int i = 0; i < 1 + fortune; ++i) {
+                if (world.rand.nextInt(28) <= metadata) {
+                    ret.add(new ItemStack(this.func_149866_i(), 1, 0));
                 }
             }
-
-            cir.setReturnValue(ret);
         }
+
+        cir.setReturnValue(ret);
     }
 }

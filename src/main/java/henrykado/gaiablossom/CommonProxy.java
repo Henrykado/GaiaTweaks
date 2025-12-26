@@ -2,7 +2,6 @@ package henrykado.gaiablossom;
 
 import java.util.Arrays;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,7 +11,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import henrykado.gaiablossom.common.block.ModBlock;
-import henrykado.gaiablossom.common.enchantment.EnchantmentGrowth;
 import henrykado.gaiablossom.common.entity.eep.ExtendedPropertiesHandler;
 import henrykado.gaiablossom.event.AnvilEventHandler;
 import henrykado.gaiablossom.event.PlayerEventHandler;
@@ -22,7 +20,7 @@ import henrykado.gaiablossom.quark.Quark;
 
 public class CommonProxy {
 
-    public static Enchantment growth = new EnchantmentGrowth(240, 1);
+    // public static Enchantment growth = new EnchantmentGrowth(240, 1);
 
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
@@ -36,10 +34,6 @@ public class CommonProxy {
 
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType, 1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType, 1);
-        // BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType, 2);
-
-        // GaiaBlossom.LOG.info(Config.greeting);
-        // GaiaBlossom.LOG.info("I am GaiaBlossom at version " + Tags.VERSION);
 
         MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
         MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());

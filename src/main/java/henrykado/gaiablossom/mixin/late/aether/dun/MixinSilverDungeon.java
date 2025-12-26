@@ -22,7 +22,7 @@ public class MixinSilverDungeon {
      */
     @Overwrite(remap = false)
     public static ItemStack getSilverLoot(Random random) {
-        int item = random.nextInt(14);
+        int item = random.nextInt(13);
         switch (item) {
             case 0:
                 return new ItemStack(ItemsAether.gummy_swet, random.nextInt(15) + 1, random.nextInt(2));
@@ -43,22 +43,17 @@ public class MixinSilverDungeon {
                 return new ItemStack(ItemsAether.valkyrie_helmet);
             case 3:
                 return new ItemStack(ItemsAether.regeneration_stone);
-            case 4:
-                return new ItemStack(ModItems.dodgeRing);
+            case 4: case 6:
+                if (random.nextBoolean())
+                    return new ItemStack(ModItems.dodgeRing);
+
+                return new ItemStack(ModItems.cloudPendant);
             case 5:
                 return new ItemStack(ModItems.invisibilityCloak);
-            case 6:
-                if (random.nextBoolean()) {
-                    return new ItemStack(ItemsAether.valkyrie_boots);
-                }
-
-                return new ItemStack(ItemsAether.valkyrie_gloves);
             case 7:
                 return new ItemStack(ItemsAether.valkyrie_leggings);
             case 8:
-                if (random.nextBoolean()) {
-                    return new ItemStack(ItemsAether.valkyrie_chestplate);
-                }
+                return new ItemStack(ItemsAether.valkyrie_chestplate);
             case 9:
                 if (random.nextBoolean()) {
                     return new ItemStack(ItemsAether.valkyrie_boots);
@@ -73,8 +68,6 @@ public class MixinSilverDungeon {
                 if (AetherConfig.goldenFeatherEnabled()) {
                     return new ItemStack(ItemsAether.golden_feather);
                 }
-            case 12:
-                return new ItemStack(ModItems.cloudPendant);
         }
         return new ItemStack(ItemsAether.holy_sword);
     }

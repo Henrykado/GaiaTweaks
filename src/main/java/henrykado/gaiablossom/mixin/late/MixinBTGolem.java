@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import atomicstryker.battletowers.common.AS_EntityGolem;
 import cpw.mods.fml.common.FMLLog;
+import henrykado.gaiablossom.Config;
 
 @Mixin(AS_EntityGolem.class)
 public abstract class MixinBTGolem extends Entity {
@@ -25,6 +26,6 @@ public abstract class MixinBTGolem extends Entity {
     @Inject(method = "updateGolemType", at = @At("TAIL"), remap = false)
     public void changeDropAmount(CallbackInfo ci) {
         FMLLog.info(String.valueOf(drops));
-        drops = 2 + worldObj.rand.nextInt(2);
+        drops = Config.battleTowerGolemDrops + worldObj.rand.nextInt(Config.battleTowerGolemExtraDrops);
     }
 }

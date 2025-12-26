@@ -39,6 +39,8 @@ dependencies {
 	implementation rfg.deobf("curse.maven:thaumcraft-223628:2227552")
     implementation('com.github.GTNewHorizons:Baubles-Expanded:2.2.2-GTNH:dev')
 
+    implementation('com.github.GTNewHorizons:Railcraft:9.17.12:dev')
+
     implementation("curse.maven:gadomancy-237271:2338768")
 
     implementation(project.files("libs/Botania.jar"))

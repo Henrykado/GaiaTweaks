@@ -5,7 +5,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +21,7 @@ import atomicstryker.battletowers.common.AS_EntityGolem;
 import atomicstryker.battletowers.common.AS_WorldGenTower;
 import atomicstryker.battletowers.common.TowerStageItemManager;
 import atomicstryker.battletowers.common.WorldGenHandler;
+import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.common.block.ModBlock;
 import henrykado.gaiablossom.common.block.tile.TileEntityMobSpawnerTower;
 import henrykado.gaiablossom.util.TowerTypes;
@@ -31,7 +34,8 @@ public class MixinWorldGenTower {
         at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", ordinal = 0),
         remap = false)
     public int nextIntRedirect(Random instance, int i) {
-        return 1; // if statement checks if rand(10) == 0, this makes the result always one, removing nether towers
+        return Config.removeNetherBattleTower ? 1 : i; // if statement checks if rand(10) == 0, this makes the result
+                                                       // always one, removing nether towers
     }
 
     /*
@@ -324,7 +328,7 @@ public class MixinWorldGenTower {
                 world.setBlock(ix + 3, builderHeight - 1, kz - 5, towerWallBlockID, 0, 3);
             }
 
-            TileEntityMobSpawnerTower tileentitymobspawner;
+            TileEntity tileentitymobspawner;
             if (!underground && topFloor || underground && floor == 1) {
                 if (towerChosen != TowerTypes.Null) {
                     AS_EntityGolem entitygolem = new AS_EntityGolem(world, towerChosen.ordinal());
@@ -337,20 +341,40 @@ public class MixinWorldGenTower {
                     world.spawnEntityInWorld(entitygolem);
                 }
             } else if (towerChosen != TowerTypes.Null) {
-                world.setBlock(ix + 2, builderHeight + 6, kz + 2, ModBlock.blockTowerSpawner, 0, 3);
-                tileentitymobspawner = (TileEntityMobSpawnerTower) world
-                    .getTileEntity(ix + 2, builderHeight + 6, kz + 2);
+                world.setBlock(
+                    ix + 2,
+                    builderHeight + 6,
+                    kz + 2,
+                    Config.betterBattleTowerSpawner ? ModBlock.blockTowerSpawner : Blocks.mob_spawner,
+                    0,
+                    3);
+                tileentitymobspawner = world.getTileEntity(ix + 2, builderHeight + 6, kz + 2);
                 if (tileentitymobspawner != null) {
-                    tileentitymobspawner.getMobSpawnerLogic()
-                        .setEntityName(this.getMobType(world.rand));
+                    if (Config.betterBattleTowerSpawner) {
+                        ((TileEntityMobSpawnerTower) tileentitymobspawner).getMobSpawnerLogic()
+                            .setEntityName(this.getMobType(world.rand));
+                    } else {
+                        ((TileEntityMobSpawner) tileentitymobspawner).func_145881_a()
+                            .setEntityName(this.getMobType(world.rand));
+                    }
                 }
 
-                world.setBlock(ix - 3, builderHeight + 6, kz + 2, ModBlock.blockTowerSpawner, 0, 3);
-                tileentitymobspawner = (TileEntityMobSpawnerTower) world
-                    .getTileEntity(ix - 3, builderHeight + 6, kz + 2);
+                world.setBlock(
+                    ix - 3,
+                    builderHeight + 6,
+                    kz + 2,
+                    Config.betterBattleTowerSpawner ? ModBlock.blockTowerSpawner : Blocks.mob_spawner,
+                    0,
+                    3);
+                tileentitymobspawner = world.getTileEntity(ix - 3, builderHeight + 6, kz + 2);
                 if (tileentitymobspawner != null) {
-                    tileentitymobspawner.getMobSpawnerLogic()
-                        .setEntityName(this.getMobType(world.rand));
+                    if (Config.betterBattleTowerSpawner) {
+                        ((TileEntityMobSpawnerTower) tileentitymobspawner).getMobSpawnerLogic()
+                            .setEntityName(this.getMobType(world.rand));
+                    } else {
+                        ((TileEntityMobSpawner) tileentitymobspawner).func_145881_a()
+                            .setEntityName(this.getMobType(world.rand));
+                    }
                 }
             } else {
                 world.setBlock(ix + 2, builderHeight + 6, kz + 2, Blocks.air, 0, 3);
@@ -410,8 +434,9 @@ public class MixinWorldGenTower {
                     if (iCurrent >= -2 || xIterator >= 4 || xIterator <= -5 || xIterator == 1 || xIterator == -2) {
                         xIterator += ix;
                         iCurrent += kz;
-                        if (world.getBlock(xIterator, k5, iCurrent) == towerFloorBlockID
-                            && world.getBlock(xIterator, k5 + 1, iCurrent) != ModBlock.blockTowerSpawner) {
+                        if (world.getBlock(xIterator, k5, iCurrent) == towerFloorBlockID && world
+                            .getBlock(xIterator, k5 + 1, iCurrent)
+                            != (Config.betterBattleTowerSpawner ? ModBlock.blockTowerSpawner : Blocks.mob_spawner)) {
                             world.setBlock(xIterator, k5, iCurrent, Blocks.air, 0, 3);
                         }
                     }

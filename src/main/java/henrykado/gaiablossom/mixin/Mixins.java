@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
+import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.GaiaBlossom;
 
 // Code adapted from GTNH Lib
@@ -17,12 +18,13 @@ public enum Mixins {
     MIXIN_PLAYER(Phase.EARLY, Side.BOTH, "entity.MixinEntityPlayer"),
     SKELETON_BETTERBOW(Phase.EARLY, Side.BOTH, "entity.MixinEntitySkeleton"),
     SKELETON_BETTERBOW_PACKET(Phase.EARLY, Side.BOTH, "entity.MixinEntityAIArrowAttack"),
-    EASIER_BLAZE(Phase.EARLY, Side.BOTH, "entity.MixinEntityBlaze"),
+    // EASIER_BLAZE(Phase.EARLY, Side.BOTH, "entity.MixinEntityBlaze"),
     MORE_ENDERMEN(Phase.EARLY, Side.BOTH, "MixinBiomeGenBase"),
+    SWAMP_WITCH(Phase.EARLY, Side.BOTH, () -> Config.swampOnlyWitches, "MixinBiomeGenSwamp"),
 
-    LESS_BEEF(Phase.EARLY, Side.BOTH, "entity.MixinEntityCow"),
-    LESS_EGGS(Phase.EARLY, Side.BOTH, "entity.MixinEntityChicken"),
-    LESS_CROPS(Phase.EARLY, Side.BOTH, "MixinBlockCrops"),
+    LESS_BEEF(Phase.EARLY, Side.BOTH, () -> Config.scarceMeat, "entity.MixinEntityCow"),
+    LESS_EGGS(Phase.EARLY, Side.BOTH, () -> Config.scarceMeat, "entity.MixinEntityChicken"),
+    LESS_CROPS(Phase.EARLY, Side.BOTH, () -> Config.slowerCropGrowth, "MixinBlockCrops"),
     FAST_FOODS(Phase.EARLY, Side.BOTH, "MixinItemFood"),
     WOLF_SKINS(Phase.EARLY, Side.CLIENT, "client.MixinRenderWolf"),
     CHANGE_MIN_SPRINT_HUNGER(Phase.EARLY, Side.CLIENT, "client.MixinEntityPlayerSP"),
@@ -31,37 +33,52 @@ public enum Mixins {
 
     BOTANIA_ITEMFRAME_BACKPORT3(Phase.LATE, Side.BOTH, TargetedMod.BOTANIA, "MixinCorporeaFunnel"),
 
-    AETHER_BAUBLES_INTEGRATION(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinInventoryAccessories"),
+    AETHER_BAUBLES_INTEGRATION(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherBaubles,
+        "aether.MixinInventoryAccessories"),
     // AETHER_HIGHER_WHALE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityAerwhale"),
     AETHER_AERBUNNY_TWEAKS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityAerbunny"),
     AETHER_ZEPHYR_YROTFIX(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityZephyr"),
     AETHER_ZEPHYR_YROTFIX2(Phase.LATE, Side.CLIENT, TargetedMod.AETHER, "aether.entity.MixinZephyrModel"),
-    AETHER_THEBETTERMIMIC(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinBlockMimicChest"),
-    AETHER_SILENTVALKYRIE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrie"),
-    AETHER_SILENTVALKYRIEQUEEN(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityValkyrieQueen"),
-    AETHER_ITEMTWEAKS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinItemsAether"),
-    AETHER_NO_MOA_EGGDROPS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.entity.MixinEntityMoa"),
-    AETHER_RARER_AMBER(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinBlockAetherLog"),
-    AETHER_LESS_ORES(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.MixinAetherBiomeDecorator"),
+    AETHER_THEBETTERMIMIC(Phase.LATE, Side.BOTH, new TargetedMod[] { TargetedMod.AETHER, TargetedMod.PRIMITIVE_MOBS },
+        () -> Config.aetherMasterToggle, "aether.MixinBlockMimicChest"),
+    AETHER_SILENTVALKYRIE(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.entity.MixinEntityValkyrie"),
+    AETHER_SILENTVALKYRIEQUEEN(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.entity.MixinEntityValkyrieQueen"),
+    AETHER_ITEMTWEAKS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.MixinItemsAether"),
+    AETHER_NO_MOA_EGGDROPS(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.entity.MixinEntityMoa"),
+    AETHER_RARER_AMBER(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.MixinBlockAetherLog"),
+    AETHER_LESS_ORES(Phase.LATE, Side.BOTH, TargetedMod.AETHER, () -> Config.aetherMasterToggle,
+        "aether.MixinAetherBiomeDecorator"),
 
-    AETHER_BRONZE_LOOT(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.dun.MixinBronzeDungeon"),
-    AETHER_SILVER_LOOT(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.dun.MixinSilverDungeon"),
+    AETHER_BRONZE_LOOT(Phase.LATE, Side.BOTH, new TargetedMod[] { TargetedMod.AETHER, TargetedMod.BOTANIA },
+        () -> Config.tweakedAetherLoot, "aether.dun.MixinBronzeDungeon"),
+    AETHER_SILVER_LOOT(Phase.LATE, Side.BOTH, new TargetedMod[] { TargetedMod.AETHER, TargetedMod.BOTANIA },
+        () -> Config.tweakedAetherLoot, "aether.dun.MixinSilverDungeon"),
     // AETHER_GOLD_LOOT(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.dun.MixinGoldDungeon"),
 
-    THAUMCRAFT_NODE_ORESPAWNING(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileNode"),
-    THAUMCRAFT_FIX_HEAD_GOGGLES(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, "thaumcraft.MixinRenderEventHandler"),
-    THAUMCRAFT_FIX_HEAD_GOGGLES2(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileNodeRenderer"),
-    THAUMCRAFT_FIX_HEAD_GOGGLES3(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, "thaumcraft.MixinFXBeamPower"),
+    THAUMCRAFT_NODE_ORESPAWNING(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, () -> Config.nodeOreInfusion,
+        "thaumcraft.MixinTileNode"),
+    THAUMCRAFT_FIX_HEAD_GOGGLES(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, () -> Config.gogglesOfRevealingBauble,
+        "thaumcraft.MixinRenderEventHandler"),
+    THAUMCRAFT_FIX_HEAD_GOGGLES2(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, () -> Config.gogglesOfRevealingBauble,
+        "thaumcraft.MixinTileNodeRenderer"),
+    THAUMCRAFT_FIX_HEAD_GOGGLES3(Phase.LATE, Side.CLIENT, TargetedMod.THAUMCRAFT, () -> Config.gogglesOfRevealingBauble,
+        "thaumcraft.MixinFXBeamPower"),
     THAUMCRAFT_GADOMANCY_FIX_HEAD_GOGGLES(Phase.LATE, Side.CLIENT,
-        new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.GADOMANCY }, "thaumcraft.MixinGadomancyNodeRenderer"),
+        new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.GADOMANCY }, () -> Config.gogglesOfRevealingBauble,
+        "thaumcraft.MixinGadomancyNodeRenderer"),
     THAUMCRAFT_TAINTED_TREES(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinBiomeGenTaint"),
     THAUMCRAFT_TAINTWOOD_SPREAD(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinBlockTaintFibres"),
     THAUMCRAFT_GREATWOOD_BLACKLIST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinWorldGenGreatwood"),
     THAUMCRAFT_ELEMENTAL_TRIBOW(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumEntityHandler"),
-    THAUMCRAFT_FIX_THAUMOMETER(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumometer"),
+    THAUMCRAFT_NOITEMFRAME_THAUMOMETER(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinThaumometer"),
     THAUMCRAFT_FIX_PEDESTAL(Phase.LATE, Side.CLIENT, new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.ANGELICA },
         "thaumcraft.MixinTilePedestalRenderer"),
-    THAUMCRAFT_FIXED_NETHERBIOME_SPAWNS(Phase.LATE, Side.BOTH,
+    THAUMCRAFT_FIX_ETF_NETHERBIOME_SPAWNS(Phase.LATE, Side.BOTH,
         new TargetedMod[] { TargetedMod.THAUMCRAFT, TargetedMod.ETFUTURUM }, "thaumcraft.MixinEntitySpawns"),
     THAUMCRAFT_SIMPLE_HARNESS_MODEL(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinModelHarness"),
     THAUMCRAFT_INFERNAL_STEEL(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.MixinTileArcaneFurnace"),
@@ -78,7 +95,8 @@ public enum Mixins {
     BATTLETOWERS_OVERWORLD_GEN_ONLY(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "MixinWorldGenBTHandler"),
     ETFUTURUM_SHEARABLE_NETHER_ROOTS(Phase.LATE, Side.BOTH, TargetedMod.ETFUTURUM, "MixinNetherRoots"),
     DIMDOORS_OVERWORLD_ONLY(Phase.LATE, Side.BOTH, TargetedMod.DIMDOORS, "MixinDMGateway"),
-    HAMMERZ_REMOVETORCHTHINGY(Phase.LATE, Side.BOTH, TargetedMod.HAMMERZ, "MixinHammer");
+    HAMMERZ_REMOVETORCHTHINGY(Phase.LATE, Side.BOTH, TargetedMod.HAMMERZ, () -> Config.removeHammerzTorchPlacing,
+        "MixinHammer");
 
     private final List<String> mixinClasses;
     private final Phase phase;
@@ -110,6 +128,11 @@ public enum Mixins {
         this.phase = phase;
         this.side = side;
         this.mixinClasses = mixinClassesArray2List(mixinClasses);
+    }
+
+    Mixins(Phase phase, Side side, Supplier<Boolean> applyIf, String... mixinClasses) {
+        this(phase, side, mixinClasses);
+        this.applyIf = applyIf;
     }
 
     private List<String> mixinClassesArray2List(String[] mixinClasses) {
