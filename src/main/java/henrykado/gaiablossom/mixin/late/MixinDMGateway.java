@@ -13,6 +13,8 @@ public abstract class MixinDMGateway {
 
     @Inject(method = "isLocationValid", at = @At("HEAD"), cancellable = true, remap = false)
     public void isLocationValidInject(World world, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(world.provider.dimensionId == 0);
+        if (world.provider.dimensionId != 0) {
+            cir.setReturnValue(false);
+        }
     }
 }

@@ -5,10 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.terraingen.BiomeEvent;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -144,12 +142,14 @@ public class PlayerEventHandler {
         event.setResult(Event.Result.DENY);
     }
 
-    @SubscribeEvent
-    public void customWaterColor(BiomeEvent.GetWaterColor event) {
-        if (event.biome == BiomeGenBase.swampland) {
-            event.newColor = Config.swamplandWaterColorOverride;
-        }
-    }
+    /*
+     * @SubscribeEvent
+     * public void customWaterColor(BiomeEvent.GetWaterColor event) {
+     * if (event.biome == BiomeGenBase.swampland) {
+     * //event.newColor = Config.swamplandWaterColorOverride;
+     * }
+     * }
+     */
 
     @SubscribeEvent
     public void onRespawn(PlayerEvent.PlayerRespawnEvent event) {

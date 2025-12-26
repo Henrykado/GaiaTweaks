@@ -2,18 +2,16 @@ package henrykado.gaiablossom.asm.replacements;
 
 import java.util.List;
 
-import henrykado.gaiablossom.util.IRenderBauble;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import net.minecraftforge.client.event.RenderPlayerEvent;
+
 import org.lwjgl.opengl.GL11;
 
 import baubles.api.BaubleType;
@@ -91,7 +89,7 @@ public class BaubleItemGoggles extends ItemGoggles implements IBaubleExpanded, I
             GL11.glRotatef(-90, 0, 1, 0);
             IBaubleRender.Helper.rotateIfSneaking(player);
             goggleModel.isRiding = player.isRiding();
-            //GL11.glTranslated(-0.5, -0.5, armor ? 0.11999999731779099 : 0.0);
+            // GL11.glTranslated(-0.5, -0.5, armor ? 0.11999999731779099 : 0.0);
             float scale = player.inventory.armorInventory[3] != null ? 0.07F : 0.0625F;
 
             GL11.glTranslated(0.0F, (player.isSneaking() ? scale : 0.0) + 0.025F, 0.0F);

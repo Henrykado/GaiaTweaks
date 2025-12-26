@@ -14,7 +14,6 @@ import henrykado.gaiablossom.client.event.AchievementKeyHandler;
 import henrykado.gaiablossom.client.gui.AchievementTab;
 import henrykado.gaiablossom.client.render.TileEntityMobSpawnerTowerRenderer;
 import henrykado.gaiablossom.common.block.tile.TileEntityMobSpawnerTower;
-import henrykado.gaiablossom.common.item.ModItems;
 
 public class ClientProxy extends CommonProxy {
 
@@ -29,10 +28,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-
-        FMLCommonHandler.instance()
-            .bus()
-            .register(ModItems.dodgeRing);
 
         /*
          * if (!Loader.isModLoaded("TConstruct")) {
@@ -59,7 +54,7 @@ public class ClientProxy extends CommonProxy {
         super.postInit(event);
 
         MinecraftForge.EVENT_BUS.register(new AccessoryButtonRemover());
-        //MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
+        // MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
 
         if (Config.showAchievementsInventoryButton) MinecraftForge.EVENT_BUS.register(new AchievementTab());
     }

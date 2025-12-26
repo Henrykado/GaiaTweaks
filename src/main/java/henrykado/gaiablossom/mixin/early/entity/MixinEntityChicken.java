@@ -11,6 +11,11 @@ public class MixinEntityChicken {
 
     @ModifyConstant(method = "onLivingUpdate", constant = @Constant(intValue = 6000, ordinal = 1))
     public int changeBaseEggDropRate(int constant) {
-        return constant * 4;
+        return constant * 6;
+    }
+
+    @ModifyConstant(method = "dropFewItems(ZI)V", constant = @Constant(intValue = 3))
+    private int dropFewItemsDropChance(int value) {
+        return 2;
     }
 }

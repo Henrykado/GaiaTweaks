@@ -41,7 +41,7 @@ dependencies {
 
     implementation("curse.maven:gadomancy-237271:2338768")
 
-    implementation rfg.deobf("curse.maven:botania-225643:2283837")
+    implementation(project.files("libs/Botania.jar"))
     implementation rfg.deobf("curse.maven:et-futurum-requiem-441392:5873837")
     implementation rfg.deobf("curse.maven:the-twilight-forest-227639:4629338")
 
@@ -50,7 +50,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:atomicstrykers-battle-towers-227877:2231443")
     implementation rfg.deobf("curse.maven:dimensional-doors-legacy-404239:4967772")
 
-    implementation('com.github.GTNewHorizons:AppleCore:3.3.7:dev')
+    implementation('com.github.GTNewHorizons:AppleCore:3.3.8:dev')
 
     implementation('com.github.GTNewHorizons:Angelica:1.0.0-beta56:dev')
     //implementation("curse.maven:applecore-224472:2530879")

@@ -11,7 +11,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 
-import henrykado.gaiablossom.common.item.ModItems;
+import vazkii.botania.common.item.ModItems;
 
 @Mixin(ComponentSilverDungeon.class)
 public class MixinSilverDungeon {
@@ -22,7 +22,7 @@ public class MixinSilverDungeon {
      */
     @Overwrite(remap = false)
     public static ItemStack getSilverLoot(Random random) {
-        int item = random.nextInt(13);
+        int item = random.nextInt(14);
         switch (item) {
             case 0:
                 return new ItemStack(ItemsAether.gummy_swet, random.nextInt(15) + 1, random.nextInt(2));
@@ -73,6 +73,8 @@ public class MixinSilverDungeon {
                 if (AetherConfig.goldenFeatherEnabled()) {
                     return new ItemStack(ItemsAether.golden_feather);
                 }
+            case 12:
+                return new ItemStack(ModItems.cloudPendant);
         }
         return new ItemStack(ItemsAether.holy_sword);
     }

@@ -46,7 +46,11 @@ public class MixinBronzeDungeon {
             case 8:
                 return new ItemStack(ItemsAether.repulsion_shield);
             default:
-                return new ItemStack(ItemsAether.cloud_staff);
+                if (random.nextInt(3) == 0) {
+                    return new ItemStack(ModItems.cloudPendant);
+                } else {
+                    return new ItemStack(ItemsAether.cloud_staff);
+                }
         }
     }
 

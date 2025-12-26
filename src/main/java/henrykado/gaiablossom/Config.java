@@ -7,11 +7,11 @@ import net.minecraftforge.common.config.Property;
 
 public class Config {
 
-    public static String greeting = "Hello World";
     public static int swamplandWaterColorOverride = 4718414;
 
     public static boolean showAchievementsInventoryButton = true;
     public static boolean enableSwordParry = true;
+    public static boolean disableVillages = true;
 
     public static boolean slowerCropGrowth = true;
 
@@ -27,15 +27,15 @@ public class Config {
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
-        greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
-
-        swamplandWaterColorOverride = configuration.getInt(
-            "swamplandWaterColorOverride",
-            Configuration.CATEGORY_GENERAL,
-            swamplandWaterColorOverride,
-            0,
-            Integer.MAX_VALUE,
-            "");
+        /*
+         * swamplandWaterColorOverride = configuration.getInt(
+         * "swamplandWaterColorOverride",
+         * Configuration.CATEGORY_GENERAL,
+         * swamplandWaterColorOverride,
+         * 0,
+         * Integer.MAX_VALUE,
+         * "");
+         */
 
         enableStaminaSystem = configuration.getBoolean(
             "enableStaminaSystem",
@@ -48,6 +48,9 @@ public class Config {
             Configuration.CATEGORY_GENERAL,
             true,
             "Enable to halve the speed crops grow");
+
+        disableVillages = configuration
+            .getBoolean("disableVillages", Configuration.CATEGORY_GENERAL, true, "Disables village generation");
 
         healMultiplier = configuration
             .getFloat("healingFoodMultiplier", Configuration.CATEGORY_GENERAL, 1.0f, 0.0f, 5.0f, "");

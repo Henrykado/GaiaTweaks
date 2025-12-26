@@ -1,6 +1,10 @@
 package henrykado.gaiablossom;
 
+import java.util.Arrays;
+
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.common.MinecraftForge;
 
 import baubles.api.expanded.BaubleExpandedSlots;
@@ -9,9 +13,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import henrykado.gaiablossom.common.block.ModBlock;
 import henrykado.gaiablossom.common.enchantment.EnchantmentGrowth;
-import henrykado.gaiablossom.common.entity.ModEntityList;
 import henrykado.gaiablossom.common.entity.eep.ExtendedPropertiesHandler;
-import henrykado.gaiablossom.common.item.ModItems;
 import henrykado.gaiablossom.event.AnvilEventHandler;
 import henrykado.gaiablossom.event.PlayerEventHandler;
 import henrykado.gaiablossom.event.WorldEventHandler;
@@ -27,20 +29,24 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
 
-        ModItems.init();
+        if (Config.disableVillages) MapGenVillage.villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {});
+
+        // ModItems.init();
         ModBlock.registerEmBlocks();
 
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType, 1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType, 1);
         // BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType, 2);
 
-        GaiaBlossom.LOG.info(Config.greeting);
+        // GaiaBlossom.LOG.info(Config.greeting);
         // GaiaBlossom.LOG.info("I am GaiaBlossom at version " + Tags.VERSION);
 
         MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
         MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());
 
         MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+
+        MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
 
         Quark.preInit();
 
@@ -49,9 +55,7 @@ public class CommonProxy {
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
-        ModEntityList.init();
-
-        MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
+        // ModEntityList.init();
 
         // AetherAPI.instance().register(new AetherEnchantment());
     }

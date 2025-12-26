@@ -18,6 +18,6 @@ public abstract class MixinBiomeGenSwamp extends BiomeGenBase {
 
     @Inject(method = "<init>(I)V", at = @At("TAIL"))
     public void constructorInject(int id, CallbackInfo ci) {
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 10, 1, 1));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 15, 1, 1));
     }
 }
