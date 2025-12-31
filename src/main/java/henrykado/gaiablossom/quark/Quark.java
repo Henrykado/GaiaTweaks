@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.BiomeDictionary;
 
+import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.common.block.ModBlock;
 import henrykado.gaiablossom.quark.tweaks.BetterRecipes;
 import henrykado.gaiablossom.quark.world.UndergroundBiome;
@@ -27,6 +28,8 @@ public class Quark {
     public static Block cobbedstone;
 
     public static void preInit() {
+        if (!Config.undergroundBiomes) return;
+
         addUndergroundBiome(new UndergroundBiomeSandstone(), BiomeDictionary.Type.SANDY, 8, 32, 12);
         addUndergroundBiome(new UndergroundBiomeSlime(), BiomeDictionary.Type.SWAMP, 15, 16, 10);
         addUndergroundBiome(new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE, 8, 22, 10);

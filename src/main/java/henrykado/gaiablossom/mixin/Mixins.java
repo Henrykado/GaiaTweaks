@@ -58,7 +58,8 @@ public enum Mixins {
         () -> Config.tweakedAetherLoot, "aether.dun.MixinBronzeDungeon"),
     AETHER_SILVER_LOOT(Phase.LATE, Side.BOTH, new TargetedMod[] { TargetedMod.AETHER, TargetedMod.BOTANIA },
         () -> Config.tweakedAetherLoot, "aether.dun.MixinSilverDungeon"),
-    // AETHER_GOLD_LOOT(Phase.LATE, Side.BOTH, TargetedMod.AETHER, "aether.dun.MixinGoldDungeon"),
+    AETHER_GOLD_LOOT(Phase.LATE, Side.BOTH, new TargetedMod[] { TargetedMod.AETHER, TargetedMod.BOTANIA },
+        () -> Config.tweakedAetherLoot, "aether.dun.MixinGoldDungeon"),
 
     THAUMCRAFT_NODE_ORESPAWNING(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, () -> Config.nodeOreInfusion,
         "thaumcraft.MixinTileNode"),

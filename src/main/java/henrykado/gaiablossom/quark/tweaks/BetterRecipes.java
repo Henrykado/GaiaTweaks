@@ -13,6 +13,8 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import henrykado.gaiablossom.Config;
+
 public class BetterRecipes {
 
     public static void init() {
@@ -35,14 +37,13 @@ public class BetterRecipes {
                         ItemStack outCopy = outStack.copy();
                         if (outCopy.getItemDamage() == OreDictionary.WILDCARD_VALUE) outCopy.setItemDamage(0);
 
-                        ItemStack in = output.copy();
-                        in.stackSize = 1;
-
                         newRecipes.add(outCopy);
-                        newRecipes.add(in);
+                        newRecipes.add(output.copy());
                     }
                 } else if (output.stackSize == 4 && outputBlock instanceof BlockStairs) {
-                    output.stackSize = 8;
+                    if (Config.betterStairRecipe) {
+                        output.stackSize = 8;
+                    }
 
                     Object[] recipeItems;
                     if (recipe instanceof ShapedRecipes) recipeItems = ((ShapedRecipes) recipe).recipeItems;
@@ -54,12 +55,8 @@ public class BetterRecipes {
                         ItemStack outCopy = outStack.copy();
                         if (outCopy.getItemDamage() == OreDictionary.WILDCARD_VALUE) outCopy.setItemDamage(0);
 
-                        outCopy.stackSize = 3;
-                        ItemStack in = output.copy();
-                        in.stackSize = 1;
-
                         newRecipes.add(outCopy);
-                        newRecipes.add(in);
+                        newRecipes.add(output.copy());
                     }
                 }
             }
@@ -69,20 +66,34 @@ public class BetterRecipes {
             Block block = Block.getBlockFromItem(
                 newRecipes.get(i + 1)
                     .getItem());
-            if (block instanceof BlockSlab) {
+            if (block instanceof BlockSlab && Config.reversalSlabRecipe) {
+                newRecipes.get(i + 1).stackSize = 1;
+
                 CraftingManager.getInstance()
                     .addShapelessRecipe(newRecipes.get(i), newRecipes.get(i + 1), newRecipes.get(i + 1));
             } else { // BlockStairs
-                CraftingManager.getInstance()
-                    .addShapelessRecipe(
-                        newRecipes.get(i),
-                        newRecipes.get(i + 1),
-                        newRecipes.get(i + 1),
-                        newRecipes.get(i + 1),
-                        newRecipes.get(i + 1));
+                if (Config.reversalStairRecipe) {
+                    ItemStack blockStack = newRecipes.get(i)
+                        .copy();
+                    blockStack.stackSize = 3;
+                    newRecipes.get(i + 1).stackSize = 1;
 
-                CraftingManager.getInstance()
-                    .addRecipe(newRecipes.get(i + 1), "B  ", "BB ", 'B', newRecipes.get(i));
+                    CraftingManager.getInstance()
+                        .addShapelessRecipe(
+                            blockStack,
+                            newRecipes.get(i + 1),
+                            newRecipes.get(i + 1),
+                            newRecipes.get(i + 1),
+                            newRecipes.get(i + 1));
+                }
+
+                if (Config.compactStairRecipe) {
+                    newRecipes.get(i).stackSize = 1;
+                    newRecipes.get(i + 1).stackSize = 4;
+
+                    CraftingManager.getInstance()
+                        .addRecipe(newRecipes.get(i + 1), "B  ", "BB ", 'B', newRecipes.get(i));
+                }
             }
         }
     }

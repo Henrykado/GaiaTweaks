@@ -28,7 +28,7 @@ public class MixinItemsAether {
                 name,
                 (new ItemAetherArmor(3, ItemArmor.ArmorMaterial.IRON, "sentry", (Item) null))
                     .setTextureName(Aether.find("armor/sentry_boots")));
-        } else if (name.equals("ambrosium_shard")) {
+        } else if (name.equals("ambrosium_shard") && Config.ambrosiumStackSize != 64) {
             return ItemsAether.register(name, item.setMaxStackSize(Config.ambrosiumStackSize));
         }
         return ItemsAether.register(name, item);

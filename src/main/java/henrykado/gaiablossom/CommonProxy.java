@@ -41,9 +41,13 @@ public class CommonProxy {
         }
 
         MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
-        MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());
+        if (Config.noRepairCost) {
+            MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());
+        }
 
-        MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+        if (Config.undergroundBiomes) {
+            MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+        }
 
         MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
         if (Loader.isModLoaded("AppleCore")) {

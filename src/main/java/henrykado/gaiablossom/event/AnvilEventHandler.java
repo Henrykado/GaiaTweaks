@@ -45,7 +45,7 @@ public class AnvilEventHandler {
                 int newDamage = outputItem.getItemDamage() - amountRepairedByMat;
                 outputItem.setItemDamage(newDamage);
 
-                amountRepairedByMat = Math.min(outputItem.getItemDamage(), outputItem.getMaxDamage() / 4);
+                amountRepairedByMat = Math.min(outputItem.getItemDamage(), outputItem.getMaxDamage() / 3);
             }
 
             repairCost += enchantmentsOutputItem.size();

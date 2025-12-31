@@ -10,12 +10,18 @@ public class Config {
     public static int swamplandWaterColorOverride = 4718414;
 
     public static boolean showAchievementsInventoryButton = true;
-    public static boolean renderSkeletonChargingBow = true; //
-    public static int animalTemptDelay = 30; // 100 by default
+    public static boolean renderSkeletonChargingBow = true;
+    public static int animalTemptDelay = 30;
     public static boolean enableSwordParry = true;
     public static boolean disableVillages = false;
     public static boolean enableFasterLadders = true;
-    public static boolean itemFrame45Degrees = true; //
+    public static boolean itemFrame45Degrees = true;
+    public static boolean noRepairCost = true;
+    public static boolean betterStairRecipe = true;
+    public static boolean compactStairRecipe = true;
+    public static boolean reversalStairRecipe = true;
+    public static boolean reversalSlabRecipe = true;
+    public static boolean undergroundBiomes = true;
 
     public static boolean slowerCropGrowth = false;
     public static boolean enableStaminaSystem = false;
@@ -44,7 +50,7 @@ public class Config {
     public static boolean nerfSentryBoots = false;
     public static boolean moasDropEggs = false;
     public static boolean lessGoldenAmberDrops = true;
-    public static int ambrosiumStackSize = 8;
+    public static int ambrosiumStackSize = 64;
 
     public static int gravititeOreSize = 6; // change to 5
     public static int gravititeOreChance = 8; // change to 2
@@ -125,6 +131,38 @@ public class Config {
             "How much moving one block in the Nether be equivalent to in the Overworld",
             1.0D,
             100.0D);
+
+        noRepairCost = configuration.getBoolean(
+            "noRepairCost",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Removes the experience repair cost of unenchanted items. Materials also always repair a 3rd of an item's durability");
+
+        betterStairRecipe = configuration.getBoolean(
+            "betterStairRecipe",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Makes stair recipes craft 8 stairs instead of just 4");
+
+        compactStairRecipe = configuration.getBoolean(
+            "compactStairRecipe",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Adds new three-block stair recipes that craft 4 stair blocks. Use this with betterStairRecipe");
+
+        reversalStairRecipe = configuration.getBoolean(
+            "reversalStairRecipe",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Allows you to turn 4 stairs into ");
+
+        reversalSlabRecipe = configuration.getBoolean("reversalSlabRecipe", Configuration.CATEGORY_GENERAL, true, "");
+
+        undergroundBiomes = configuration.getBoolean(
+            "undergroundBiomes",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Adds most of 1.12 Quark's underground biomes.\nA sandstone biome, a 'slime' biome, a spider cave biome, an icy biome, a lush biome (grass and vines) and an overgrown biome (mossy stone and leaves)");
 
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");
@@ -207,7 +245,7 @@ public class Config {
             "How many extra items will Bt's golem drop (random amount from 0 to this value)");
 
         tweakedAetherLoot = configuration
-            .getBoolean("tweakedAetherLoot", "aether", false, "Requires my fork of Botania to work");
+            .getBoolean("tweakedAetherLoot", "aether", false, "Requires my fork of Botania to work. Made for my modpack");
 
         aetherBaubles = configuration
             .getBoolean("aetherBaubles", "aether", true, "Replace Aether's accessories system with Baubles");
@@ -243,7 +281,7 @@ public class Config {
             "Makes golden amber logs drop less amber. Also removes the requirement to use an Aether tool to get the amber");
 
         ambrosiumStackSize = configuration
-            .getInt("ambrosiumStackSize", "aether", 8, 0, 64, "Changes Ambrosium's maximum stack size");
+            .getInt("ambrosiumStackSize", "aether", 64, 0, 64, "Changes Ambrosium's maximum stack size");
 
         replaceAetherMimic = configuration.getBoolean(
             "replaceAetherMimic",
@@ -280,7 +318,7 @@ public class Config {
             "nodeOreInfusion",
             "thaumcraft",
             true,
-            "Makes aura nodes 'infuse' stone blocks in a 3 block radius with an aspect");
+            "Makes aura nodes 'infuse' a few stone blocks in a 3 block radius with an aspect every 3 minutes");
 
         thaumometerIgnoresItemFrame = configuration
             .getBoolean("thaumometerIgnoresItemFrame", "thaumcraft", true, "Makes the Thaumometer ignore item frames");
@@ -301,7 +339,7 @@ public class Config {
             "Allows the Infernal Furnace to smelt iron ingots into Railcraft's steel ingots. Requires Railcraft");
 
         greatwoodBiomeIDBlacklist = configuration.getStringList(
-            "nodeOreInfusion",
+            "greatwoodBiomeIDBlacklist",
             "thaumcraft",
             greatwoodBiomeIDBlacklist,
             "A list of biome IDs where greatwood trees will not generate");

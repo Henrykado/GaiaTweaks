@@ -14,6 +14,7 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 
+import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessory;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessoryDyed;
 import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
@@ -28,6 +29,7 @@ public class ClassTransformer implements IClassTransformer {
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
         switch (transformedName) {
             case "net.minecraft.inventory.ContainerRepair$2" -> {
+                if (!Config.noRepairCost) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
@@ -42,6 +44,7 @@ public class ClassTransformer implements IClassTransformer {
                 return writeClass(classNode);
             }
             case "com.gildedgames.the_aether.items.ItemsAether" -> {
+                if (!Config.aetherBaubles) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
@@ -81,6 +84,7 @@ public class ClassTransformer implements IClassTransformer {
              * }
              */
             case "thaumcraft.common.config.ConfigItems" -> {
+                if (!Config.gogglesOfRevealingBauble) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
