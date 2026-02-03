@@ -37,13 +37,13 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:aether-255308:5875775")
 
     compileOnly rfg.deobf("curse.maven:thaumcraft-223628:2227552")
-    compileOnly('com.github.GTNewHorizons:Baubles-Expanded:2.2.2-GTNH:dev')
+    implementation('com.github.GTNewHorizons:Baubles-Expanded:2.2.2-GTNH:dev')
 
     compileOnly rfg.deobf('curse.maven:railcraft-51195:2299713')
 
     compileOnly("curse.maven:gadomancy-237271:2338768")
 
-    compileOnly('com.github.GTNewHorizons:Botania:1.13.6-GTNH:dev')
+    implementation('com.github.GTNewHorizons:Botania:1.13.6-GTNH:dev')
     compileOnly rfg.deobf("curse.maven:et-futurum-requiem-441392:5873837")
     compileOnly rfg.deobf("curse.maven:the-twilight-forest-227639:4629338")
 
@@ -54,5 +54,5 @@ dependencies {
 
     implementation('com.github.GTNewHorizons:AppleCore:3.3.8:dev')
 
-    implementation('com.github.GTNewHorizons:Angelica:1.0.0-beta56:dev')
+    implementation('com.github.GTNewHorizons:Angelica:2.0.0-alpha16:dev')
 }

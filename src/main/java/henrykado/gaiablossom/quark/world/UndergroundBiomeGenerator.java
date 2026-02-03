@@ -1,7 +1,6 @@
 package henrykado.gaiablossom.quark.world;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,9 +28,9 @@ public class UndergroundBiomeGenerator extends MultiChunkFeatureGenerator {
     private final long seedXor;
 
     public UndergroundBiomeGenerator(UndergroundBiome biome, int rarity, int minXSize, int minYSize, int minZSize,
-        int xVariation, int yVariation, int zVariation, int minY, int maxY, BiomeDictionary.Type... types) {
+        int xVariation, int yVariation, int zVariation, int minY, int maxY, List<BiomeDictionary.Type> types) {
         this.biome = biome;
-        this.types = Arrays.asList(types);
+        this.types = types;
         this.rarity = rarity;
         this.minXSize = minXSize;
         this.minYSize = minYSize;
@@ -80,7 +79,7 @@ public class UndergroundBiomeGenerator extends MultiChunkFeatureGenerator {
     @Override
     public boolean isSourceValid(World world, BlockPos pos) {
         BiomeGenBase biomeGen = world.getBiomeGenForCoords((int) pos.x, (int) pos.z);
-        return biomeTypeIntersectCheck(types, biomeGen) && biome.isValidBiome(biomeGen);
+        return (types.isEmpty() || biomeTypeIntersectCheck(types, biomeGen)) && biome.isValidBiome(biomeGen);
     }
 
     public boolean biomeTypeIntersectCheck(List<BiomeDictionary.Type> typesArray, BiomeGenBase b) {
@@ -151,5 +150,31 @@ public class UndergroundBiomeGenerator extends MultiChunkFeatureGenerator {
 
         public final Map<BlockPos, EnumFacing> wallMap = new HashMap<>();
 
+    }
+
+    public static class UndergroundBiomeData {
+
+        public UndergroundBiomeData(UndergroundBiome biome, int rarity, int minWidth, int widthVariation, int minHeight,
+            int heightVariation, int minY, int maxY, List<BiomeDictionary.Type> types) {
+            this.biome = biome;
+            this.rarity = rarity;
+            this.minWidth = minWidth;
+            this.widthVariation = widthVariation;
+            this.minHeight = minHeight;
+            this.heightVariation = heightVariation;
+            this.minY = minY;
+            this.maxY = maxY;
+            this.types = types;
+        }
+
+        public final UndergroundBiome biome;
+        public final int rarity;
+        public final int minWidth;
+        public final int widthVariation;
+        public final int minHeight;
+        public final int heightVariation;
+        public final int minY;
+        public final int maxY;
+        public final List<BiomeDictionary.Type> types;
     }
 }

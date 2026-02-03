@@ -11,8 +11,6 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 
-import vazkii.botania.common.item.ModItems;
-
 @Mixin(ComponentSilverDungeon.class)
 public class MixinSilverDungeon {
 
@@ -44,12 +42,12 @@ public class MixinSilverDungeon {
             case 3:
                 return new ItemStack(ItemsAether.regeneration_stone);
             case 4:
-            case 6:
-                if (random.nextBoolean()) return new ItemStack(ModItems.dodgeRing);
+                // case 6:
+                // if (random.nextBoolean()) return new ItemStack(ModItems.dodgeRing);
 
-                return new ItemStack(ModItems.cloudPendant);
-            case 5:
-                return new ItemStack(ModItems.invisibilityCloak);
+                // return new ItemStack(ModItems.cloudPendant);
+                // case 5:
+                // return new ItemStack(ModItems.invisibilityCloak);
             case 7:
                 return new ItemStack(ItemsAether.valkyrie_leggings);
             case 8:

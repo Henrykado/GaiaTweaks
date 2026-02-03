@@ -1,11 +1,25 @@
 package henrykado.gaiablossom;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
+import cpw.mods.fml.common.Loader;
+import henrykado.gaiablossom.quark.world.UndergroundBiome;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeGenerator;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeIcy;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeLush;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeOvergrown;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeSandstone;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeSlime;
+import henrykado.gaiablossom.quark.world.UndergroundBiomeSpiderNest;
+
 public class Config {
+
+    private static Configuration configuration;
 
     public static int swamplandWaterColorOverride = 4718414;
 
@@ -82,8 +96,10 @@ public class Config {
     public static boolean removeHammerzTorchPlacing = true;
     public static boolean shearNetherRoots = true;
 
+    public static ArrayList<UndergroundBiomeGenerator.UndergroundBiomeData> undergroundBiomeList = new ArrayList<>();
+
     public static void synchronizeConfiguration(File configFile) {
-        Configuration configuration = new Configuration(configFile);
+        configuration = new Configuration(configFile);
 
         /*
          * swamplandWaterColorOverride = configuration.getInt(
@@ -157,12 +173,6 @@ public class Config {
             "Allows you to turn 4 stairs into ");
 
         reversalSlabRecipe = configuration.getBoolean("reversalSlabRecipe", Configuration.CATEGORY_GENERAL, true, "");
-
-        undergroundBiomes = configuration.getBoolean(
-            "undergroundBiomes",
-            Configuration.CATEGORY_GENERAL,
-            true,
-            "Adds most of 1.12 Quark's underground biomes.\nA sandstone biome, a 'slime' biome, a spider cave biome, an icy biome, a lush biome (grass and vines) and an overgrown biome (mossy stone and leaves)");
 
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");
@@ -386,5 +396,87 @@ public class Config {
         if (configuration.hasChanged()) {
             configuration.save();
         }
+    }
+
+    public static void synchronizeConfigurationLate() {
+        addUndergroundBiome(
+            configuration,
+            new UndergroundBiomeSandstone(),
+            BiomeDictionary.Type.SANDY,
+            8,
+            32,
+            "desert");
+
+        if (Loader.isModLoaded("etfuturum")) {
+            addUndergroundBiome(
+                configuration,
+                new UndergroundBiomeSlime(),
+                BiomeDictionary.Type.SWAMP,
+                15,
+                16,
+                "swampSlime");
+        }
+
+        addUndergroundBiome(configuration, new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE, 8, 22, "jungle");
+
+        addUndergroundBiome(
+            configuration,
+            new UndergroundBiomeOvergrown(),
+            BiomeDictionary.Type.CONIFEROUS,
+            40,
+            16,
+            "tundra");
+
+        addUndergroundBiome(
+            configuration,
+            new UndergroundBiomeSpiderNest(),
+            BiomeDictionary.Type.PLAINS,
+            80,
+            16,
+            "plainsSpider");
+
+        addUndergroundBiome(configuration, new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY, 15, 26, "icyCave");
+
+        if (configuration.hasChanged()) {
+            configuration.save();
+        }
+    }
+
+    private static void addUndergroundBiome(Configuration config, UndergroundBiome biome,
+        BiomeDictionary.Type defaultType, int defaultRarity, int defaultWidth, String name) {
+        boolean enabled = config.getBoolean(name + "Enable", "undergroundBiomes." + name, true, "");
+
+        int rarity = config
+            .getInt(name + "Rarity", "undergroundBiomes." + name, defaultRarity, 0, Integer.MAX_VALUE, "");
+        int minWidth = config
+            .getInt(name + "MinimumWidth", "undergroundBiomes." + name, defaultWidth, 0, Integer.MAX_VALUE, "");
+        int widthVariation = config
+            .getInt(name + "WidthVariation", "undergroundBiomes." + name, 12, 0, Integer.MAX_VALUE, "");
+        int minHeight = config
+            .getInt(name + "MinimumHeight", "undergroundBiomes." + name, 10, 0, Integer.MAX_VALUE, "");
+        int heightVariation = config
+            .getInt(name + "HeightVariation", "undergroundBiomes." + name, 7, 0, Integer.MAX_VALUE, "");
+        int minYLevel = config
+            .getInt(name + "MinimumYLevel", "undergroundBiomes." + name, 18 + 8, 0, Integer.MAX_VALUE, "");
+        int maxYLevel = config
+            .getInt(name + "MaximumYLevel", "undergroundBiomes." + name, 48 - 8, 0, Integer.MAX_VALUE, "");
+        ArrayList<BiomeDictionary.Type> types = new ArrayList<>();
+        for (String type : config
+            .getStringList(name + "BiomeTypes", "undergroundBiomes." + name, new String[] { defaultType.name() }, "")) {
+            types.add(BiomeDictionary.Type.valueOf(type));
+        }
+
+        UndergroundBiomeGenerator.UndergroundBiomeData undergroundBiomeData = new UndergroundBiomeGenerator.UndergroundBiomeData(
+            biome,
+            rarity,
+            minWidth,
+            widthVariation,
+            minHeight,
+            heightVariation,
+            minYLevel,
+            maxYLevel,
+            types);
+
+        if (enabled) undergroundBiomeList.add(undergroundBiomeData);
     }
 }

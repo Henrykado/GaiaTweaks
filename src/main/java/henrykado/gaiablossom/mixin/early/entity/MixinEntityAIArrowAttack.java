@@ -31,7 +31,8 @@ public abstract class MixinEntityAIArrowAttack extends EntityAIBase {
 
     @Inject(method = "updateTask", at = @At("TAIL"))
     public void updateTaskInject(CallbackInfo ci) {
-        boolean flag = this.entityHost.getEntitySenses().canSee(this.attackTarget);
+        boolean flag = this.entityHost.getEntitySenses()
+            .canSee(this.attackTarget);
         blossom_of_Gaia$sendPacketToAllAround(flag, 32);
     }
 

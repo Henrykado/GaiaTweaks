@@ -1,14 +1,11 @@
 package henrykado.gaiablossom.event;
 
-import static henrykado.gaiablossom.quark.Quark.biomes;
-import static vazkii.botania.api.BotaniaAPI.*;
-import static vazkii.botania.common.crafting.ModPetalRecipes.*;
-
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import henrykado.gaiablossom.quark.Quark;
 import henrykado.gaiablossom.quark.world.UndergroundBiomeGenerator;
 
 public class WorldEventHandler {
@@ -22,7 +19,7 @@ public class WorldEventHandler {
 
             Chunk chunk = world.getChunkFromBlockCoords(chunkX, chunkZ);
 
-            for (UndergroundBiomeGenerator gen : biomes) {
+            for (UndergroundBiomeGenerator gen : Quark.undergroundBiomes) {
                 gen.generate(chunk.xPosition, chunk.zPosition, world);
             }
         }

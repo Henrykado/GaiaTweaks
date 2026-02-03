@@ -1,6 +1,5 @@
 package henrykado.gaiablossom.mixin.early.client;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelSkeleton;
 import net.minecraft.entity.EntityLivingBase;
