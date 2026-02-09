@@ -13,11 +13,11 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void onPlayerAttacked(LivingAttackEvent event) {
-        if (!(event.entity instanceof EntityPlayer player) || !((EntityPlayer) event.entity).isBlocking()
+        if (!(event.entity instanceof EntityPlayer player) || !player.isBlocking()
             || event.source.isUnblockable()
             || !Config.enableSwordParry) return;
 
-        if (player.getItemInUseDuration() <= 3) {
+        if ((player.itemInUse.getMaxItemUseDuration() - player.itemInUseCount) <= 3) {
             Entity damagingEntity = event.source.getSourceOfDamage();
 
             if (damagingEntity != null) {
