@@ -1,7 +1,8 @@
 package henrykado.gaiablossom;
 
-import java.util.List;
+import java.util.Arrays;
 
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -28,7 +29,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfigurationLate();
 
-        if (Config.disableVillages) MapGenVillage.villageSpawnBiomes = List.of();
+        if (Config.disableVillages) MapGenVillage.villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {});
 
         // ModItems.init();
         ModBlock.registerEmBlocks();
