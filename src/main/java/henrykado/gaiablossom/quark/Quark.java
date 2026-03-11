@@ -4,11 +4,11 @@ import static net.minecraft.block.Block.soundTypePiston;
 
 import java.util.ArrayList;
 
-import henrykado.gaiablossom.common.block.ModBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 import henrykado.gaiablossom.Config;
+import henrykado.gaiablossom.common.block.ModBlock;
 import henrykado.gaiablossom.quark.tweaks.BetterRecipes;
 import henrykado.gaiablossom.quark.world.UndergroundBiomeGenerator;
 

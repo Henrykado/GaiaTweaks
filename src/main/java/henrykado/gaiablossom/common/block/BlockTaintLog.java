@@ -38,14 +38,7 @@ public class BlockTaintLog extends BlockRotatedPillar {
     public boolean onBlockEventReceived(World world, int x, int y, int z, int id, int cd) {
         if (id == 1) {
             if (world.isRemote) {
-                world.playSound(
-                    x,
-                    y,
-                    z,
-                    "thaumcraft:roots",
-                    0.1F,
-                    0.9F + world.rand.nextFloat() * 0.2F,
-                    false);
+                world.playSound(x, y, z, "thaumcraft:roots", 0.1F, 0.9F + world.rand.nextFloat() * 0.2F, false);
             }
 
             return true;

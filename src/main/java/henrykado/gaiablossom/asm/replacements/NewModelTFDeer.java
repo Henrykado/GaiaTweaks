@@ -87,7 +87,7 @@ public class NewModelTFDeer extends ModelQuadruped {
 
     @Override
     public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_,
-            float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
+        float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
         float f6 = (180F / (float) Math.PI);
         // this.head.rotateAngleX = p_78087_5_ / (180F / (float)Math.PI);
         this.head.rotateAngleY = p_78087_4_ / (180F / (float) Math.PI);

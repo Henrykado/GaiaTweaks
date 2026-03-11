@@ -17,7 +17,8 @@ public class PlayerEventHandler {
             || event.source.isUnblockable()
             || !Config.enableSwordParry) return;
 
-        if (Config.swordParryWindow == -1 || (player.itemInUse.getMaxItemUseDuration() - player.itemInUseCount) <= Config.swordParryWindow) {
+        if (Config.swordParryWindow == -1
+            || (player.itemInUse.getMaxItemUseDuration() - player.itemInUseCount) <= Config.swordParryWindow) {
             Entity damagingEntity = event.source.getSourceOfDamage();
 
             if (damagingEntity != null) {

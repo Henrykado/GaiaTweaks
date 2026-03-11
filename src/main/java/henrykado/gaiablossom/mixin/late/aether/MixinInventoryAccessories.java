@@ -1,7 +1,10 @@
 package henrykado.gaiablossom.mixin.late.aether;
 
-import static baubles.api.expanded.BaubleExpandedSlots.*;
+import static baubles.api.expanded.BaubleExpandedSlots.amuletType;
+import static baubles.api.expanded.BaubleExpandedSlots.bodyType;
 import static baubles.api.expanded.BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType;
+import static baubles.api.expanded.BaubleExpandedSlots.ringType;
+import static baubles.api.expanded.BaubleExpandedSlots.universalType;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

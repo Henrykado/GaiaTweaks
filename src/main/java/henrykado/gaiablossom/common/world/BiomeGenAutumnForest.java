@@ -2,11 +2,11 @@ package henrykado.gaiablossom.common.world;
 
 import java.util.Random;
 
-import henrykado.gaiablossom.common.block.ModBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import henrykado.gaiablossom.common.block.ModBlock;
 
 public class BiomeGenAutumnForest extends BiomeGenBase {
 
@@ -18,20 +18,21 @@ public class BiomeGenAutumnForest extends BiomeGenBase {
 
         setColor(353825);
         setBiomeName("Autumnal Forest");
-        //setTemperatureRainfall();
+        // setTemperatureRainfall();
 
         theBiomeDecorator.treesPerChunk = 11;
         theBiomeDecorator.grassPerChunk = 3;
     }
 
-    /*@SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor(int p_150571_1_, int p_150571_2_, int p_150571_3_) {
-        return 5882165;
-    }*/
+    /*
+     * @SideOnly(Side.CLIENT)
+     * public int getBiomeFoliageColor(int p_150571_1_, int p_150571_2_, int p_150571_3_) {
+     * return 5882165;
+     * }
+     */
 
     @Override
-    public WorldGenAbstractTree func_150567_a(Random random)
-    {
+    public WorldGenAbstractTree func_150567_a(Random random) {
         return switch (random.nextInt(3)) {
             case 0 -> redLeavesTree;
             case 1 -> orangeLeavesTree;

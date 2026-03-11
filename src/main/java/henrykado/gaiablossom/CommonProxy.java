@@ -2,7 +2,6 @@ package henrykado.gaiablossom;
 
 import java.util.Arrays;
 
-import henrykado.gaiablossom.common.world.BiomeGenAutumnForest;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.common.BiomeDictionary;
@@ -20,6 +19,7 @@ import henrykado.gaiablossom.common.event.AnvilEventHandler;
 import henrykado.gaiablossom.common.event.AppleCoreEventHandler;
 import henrykado.gaiablossom.common.event.PlayerEventHandler;
 import henrykado.gaiablossom.common.event.WorldEventHandler;
+import henrykado.gaiablossom.common.world.BiomeGenAutumnForest;
 import henrykado.gaiablossom.network.GaiaPacketHandler;
 import henrykado.gaiablossom.quark.Quark;
 

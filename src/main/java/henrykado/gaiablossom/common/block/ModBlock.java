@@ -1,12 +1,12 @@
 package henrykado.gaiablossom.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.common.block.tileentity.TileEntityMobSpawnerTower;
-import net.minecraft.block.material.Material;
 
 public class ModBlock extends Block {
 
@@ -29,10 +29,10 @@ public class ModBlock extends Block {
         if (Config.autumnForest) {
             redLeaves = new BlockModLeaves("autumn_red");
             orangeLeaves = new BlockModLeaves("autumn_orange");
-            deadLeaves = new BlockDeadLeaves().setBlockName("dead_leaves").setBlockTextureName("dead_leaves");
+            deadLeaves = new BlockDeadLeaves().setBlockName("dead_leaves")
+                .setBlockTextureName("dead_leaves");
         }
     }
-
 
     public ModBlock(Material material, String name) {
         super(material);
@@ -40,7 +40,6 @@ public class ModBlock extends Block {
         setBlockName(name);
         GameRegistry.registerBlock(this, name);
     }
-
 
     public static void registerBlock(Block block, String name, boolean setTextureName) {
         block.setBlockName(name);

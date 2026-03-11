@@ -1,6 +1,5 @@
 package henrykado.gaiablossom.asm;
 
-import henrykado.gaiablossom.asm.replacements.*;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,9 +7,21 @@ import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Type;
-import org.objectweb.asm.tree.*;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.JumpInsnNode;
+import org.objectweb.asm.tree.LdcInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.TypeInsnNode;
 
 import henrykado.gaiablossom.Config;
+import henrykado.gaiablossom.asm.replacements.BaubleItemAccessory;
+import henrykado.gaiablossom.asm.replacements.BaubleItemAccessoryDyed;
+import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
+import henrykado.gaiablossom.asm.replacements.NewModelTFBighorn;
+import henrykado.gaiablossom.asm.replacements.NewModelTFBighornFur;
+import henrykado.gaiablossom.asm.replacements.NewModelTFDeer;
 import scala.tools.asm.Opcodes;
 import thaumcraft.common.items.armor.ItemGoggles;
 import twilightforest.client.model.ModelTFBighorn;
@@ -139,7 +150,6 @@ public class ClassTransformer implements IClassTransformer {
         LOG.error("Couldn't find the \"" + methodName + "\" method inside the provided ClassNode!");
         return new AbstractInsnNode[] {};
     }
-
 
     public void tryReplaceInstance(AbstractInsnNode node, String oldName, String newName) {
         if (node instanceof TypeInsnNode typeNode && node.getOpcode() == Opcodes.NEW) {

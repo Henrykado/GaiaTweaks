@@ -198,13 +198,8 @@ public class Config {
             false,
             "Adds the Autumnal Forest, a new autumn-themed biome");
 
-        autumnForestBiomeID = configuration.getInt(
-            Configuration.CATEGORY_GENERAL,
-            "autumnForestBiomeID",
-            40,
-            0,
-            Integer.MAX_VALUE,
-            "");
+        autumnForestBiomeID = configuration
+            .getInt(Configuration.CATEGORY_GENERAL, "autumnForestBiomeID", 40, 0, Integer.MAX_VALUE, "");
 
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");
@@ -374,12 +369,11 @@ public class Config {
             true,
             "Limits greatwood tree generation to the overworld");
 
-        removeHarnessModel = configuration
-            .getBoolean(
-                "removeHarnessModel",
-                "thaumcraft",
-                false,
-                "Removes the Thaumostatic Harness' .obj model (the non-square one)");
+        removeHarnessModel = configuration.getBoolean(
+            "removeHarnessModel",
+            "thaumcraft",
+            false,
+            "Removes the Thaumostatic Harness' .obj model (the non-square one)");
 
         customTwilightForestModels = configuration.getBoolean(
             "customTwilightForestModels",
@@ -459,13 +453,7 @@ public class Config {
                 "swampSlime");
         }
 
-        addUndergroundBiome(
-            configuration,
-            new UndergroundBiomeLush(),
-            BiomeDictionary.Type.JUNGLE,
-            8,
-            22,
-            "jungle");
+        addUndergroundBiome(configuration, new UndergroundBiomeLush(), BiomeDictionary.Type.JUNGLE, 8, 22, "jungle");
 
         addUndergroundBiome(
             configuration,
@@ -483,13 +471,7 @@ public class Config {
             16,
             "plainsSpider");
 
-        addUndergroundBiome(
-            configuration,
-            new UndergroundBiomeIcy(),
-            BiomeDictionary.Type.SNOWY,
-            15,
-            14,
-            "icyCave");
+        addUndergroundBiome(configuration, new UndergroundBiomeIcy(), BiomeDictionary.Type.SNOWY, 15, 14, "icyCave");
 
         if (configuration.hasChanged()) {
             configuration.save();

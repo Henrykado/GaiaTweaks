@@ -1,6 +1,8 @@
 package henrykado.gaiablossom.asm.replacements;
 
-import static baubles.api.expanded.BaubleExpandedSlots.*;
+import static baubles.api.expanded.BaubleExpandedSlots.amuletType;
+import static baubles.api.expanded.BaubleExpandedSlots.bodyType;
+import static baubles.api.expanded.BaubleExpandedSlots.ringType;
 import static baubles.api.expanded.BaubleExpandedSlots.universalType;
 
 import java.util.List;

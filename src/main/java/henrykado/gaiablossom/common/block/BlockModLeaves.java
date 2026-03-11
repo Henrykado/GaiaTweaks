@@ -242,7 +242,8 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
         for (int i = 0; i < 2; ++i) {
-            this.icons[i] = reg.registerIcon(GaiaBlossom.MODID + ":" + this.getTextureName() + (i == 1 ? "_opaque" : ""));
+            this.icons[i] = reg
+                .registerIcon(GaiaBlossom.MODID + ":" + this.getTextureName() + (i == 1 ? "_opaque" : ""));
         }
     }
 
@@ -257,7 +258,8 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_,
+        int p_149646_5_) {
         return true;
     }
 

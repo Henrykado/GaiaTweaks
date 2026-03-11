@@ -1,6 +1,5 @@
 package henrykado.gaiablossom.common.item.unused;
 
-import henrykado.gaiablossom.common.item.ModItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +8,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import henrykado.gaiablossom.common.item.ModItem;
 
 public class RecallPotion extends ModItem {
 
