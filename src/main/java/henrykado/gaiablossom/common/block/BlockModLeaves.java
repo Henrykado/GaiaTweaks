@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -28,16 +29,56 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
     int[] connectedLogs;
 
     protected IIcon[] icons = new IIcon[2];
+    int color;
 
-    public BlockModLeaves(String name) {
+    public BlockModLeaves(String name, int color) {
         super(Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(soundTypeGrass);
+        this.color = color;
 
-        ModBlock.registerBlock(this, name);
+        this.setBlockTextureName("leaves_oak");
+        ModBlock.registerBlock(this, name, false);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getBlockColor() {
+        double var1 = (double)0.5F;
+        double var3 = (double)1.0F;
+        return ColorizerFoliage.getFoliageColor(var1, var3);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(int meta)
+    {
+        return color;
+    }
+
+    /**
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
+     */
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess worldIn, int x, int y, int z)
+    {
+        int l = 0;
+        int i1 = 0;
+        int j1 = 0;
+
+        for (int k1 = -1; k1 <= 1; ++k1)
+        {
+            for (int l1 = -1; l1 <= 1; ++l1)
+            {
+                l += (color & 16711680) >> 16;
+                i1 += (color & 65280) >> 8;
+                j1 += color & 255;
+            }
+        }
+
+        return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
     }
 
     /**
@@ -252,15 +293,17 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
         return this.icons[Minecraft.getMinecraft().gameSettings.fancyGraphics ? 0 : 1];
     }
 
-    public boolean isOpaqueCube() {
-        return !Minecraft.getMinecraft().gameSettings.fancyGraphics;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_,
-        int p_149646_5_) {
-        return true;
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z,
+        int side) {
+        Block block = worldIn.getBlock(x, y, z);
+        return Blocks.leaves.isOpaqueCube() && block == this ? false : super.shouldSideBeRendered(worldIn, x, y, z, side);
+    }
+
+    public boolean isOpaqueCube()
+    {
+        return Blocks.leaves.isOpaqueCube();
     }
 
     @Override

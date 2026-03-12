@@ -28,8 +28,8 @@ public class ModBlock extends Block {
         }
 
         if (Config.autumnForest) {
-            redLeaves = new BlockModLeaves("autumn_red");
-            orangeLeaves = new BlockModLeaves("autumn_orange");
+            redLeaves = new BlockModLeaves("autumn_red", 0xdf3e23);
+            orangeLeaves = new BlockModLeaves("autumn_orange", 0xde662a);
             deadLeaves = new BlockDeadLeaves().register("dead_leaves");
         }
     }
