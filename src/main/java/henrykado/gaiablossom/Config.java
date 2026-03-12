@@ -44,6 +44,7 @@ public class Config {
     public static boolean enableStaminaSystem = false;
     public static boolean scarceMeat = false;
     public static float healMultiplier = 1.0f;
+    public static int staminaTimer = 200;
     public static String[] foodHealValues = new String[] {};
     public static String[] foodBuffs = new String[] { "golden_carrot:16:12", "baked_potato:5:6", "cookie:1:7",
         "etfuturum.honey_bottle:1:15", "pumpkin_pie:11:6", "mushroom_stew:10:5", "etfuturum.rabbit_stew:8:12" };
@@ -212,6 +213,9 @@ public class Config {
 
         healMultiplier = configuration
             .getFloat("healingFoodMultiplier", "hunger", 1.0f, 0.0f, 10.0f, "Requires enableStaminaSystem");
+
+        staminaTimer = configuration
+            .getInt("staminaTimer", "hunger", 200, 0, Integer.MAX_VALUE, "Requires enableStaminaSystem\nChanges the amount of ticks it takes to recover stamina");
 
         foodHealValues = configuration
             .getStringList("foodHealValues", "hunger", foodHealValues, "Requires enableStaminaSystem\nItem:healAmount");

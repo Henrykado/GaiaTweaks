@@ -1,5 +1,6 @@
 package henrykado.gaiablossom.common.event;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
@@ -28,7 +29,7 @@ public class AppleCoreEventHandler {
                 if (playerProperties != null && playerProperties.staminaTimer-- == 0) {
                     int hunger = player.getFoodStats()
                         .getFoodLevel();
-                    playerProperties.staminaTimer = 200;
+                    playerProperties.staminaTimer = Config.staminaTimer;
                     AppleCoreAPI.mutator.setHunger(player, Math.min(hunger + 1, 20));
                     AppleCoreAPI.mutator.setExhaustion(player, 0);
                 }
@@ -40,7 +41,7 @@ public class AppleCoreEventHandler {
     public void onExhausted(ExhaustionEvent.Exhausted event) {
         if (!event.player.worldObj.isRemote && Config.enableStaminaSystem) {
             GaiaPlayer playerProperties = GaiaPlayer.get(event.player);
-            playerProperties.staminaTimer = 200;
+            playerProperties.staminaTimer = Config.staminaTimer;
         }
     }
 
@@ -86,16 +87,9 @@ public class AppleCoreEventHandler {
 
     @SubscribeEvent
     public void disableStarvation(StarvationEvent.AllowStarvation event) {
-        event.setResult(Config.enableStaminaSystem ? Event.Result.DENY : Event.Result.DEFAULT);
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    @Optional.Method(modid = "Thaumcraft")
-    public void disableStarvationTC(StarvationEvent.AllowStarvation event) {
-        if (event.player.isPotionActive(PotionUnnaturalHunger.instance)) {
+        if (Loader.isModLoaded("Thaumcraft") && event.player.isPotionActive(PotionUnnaturalHunger.instance)) {
             event.setResult(Event.Result.DEFAULT);
-        } else {
-            event.setResult(Config.enableStaminaSystem ? Event.Result.DENY : Event.Result.DEFAULT);
         }
+        else event.setResult(Config.enableStaminaSystem ? Event.Result.DENY : Event.Result.DEFAULT);
     }
 }

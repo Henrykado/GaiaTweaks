@@ -41,7 +41,7 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
         method = "damageEntity(Lnet/minecraft/util/DamageSource;F)V",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/EntityPlayer;addExhaustion(F)V"))
     public float damageExhaustionRedirect(float exhaustion, @Local(argsOnly = true) float damage) {
-        return Config.enableStaminaSystem ? (damage * 4) : damage;
+        return Config.enableStaminaSystem ? (damage * 2) : damage;
     }
 
     @ModifyArg(
