@@ -214,8 +214,13 @@ public class Config {
         healMultiplier = configuration
             .getFloat("healingFoodMultiplier", "hunger", 1.0f, 0.0f, 10.0f, "Requires enableStaminaSystem");
 
-        staminaTimer = configuration
-            .getInt("staminaTimer", "hunger", 200, 0, Integer.MAX_VALUE, "Requires enableStaminaSystem\nChanges the amount of ticks it takes to recover stamina");
+        staminaTimer = configuration.getInt(
+            "staminaTimer",
+            "hunger",
+            200,
+            0,
+            Integer.MAX_VALUE,
+            "Requires enableStaminaSystem\nChanges the amount of ticks it takes to recover stamina");
 
         foodHealValues = configuration
             .getStringList("foodHealValues", "hunger", foodHealValues, "Requires enableStaminaSystem\nItem:healAmount");

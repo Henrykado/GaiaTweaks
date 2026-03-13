@@ -22,7 +22,6 @@ import net.minecraftforge.common.IShearable;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import henrykado.gaiablossom.GaiaBlossom;
 
 public class BlockModLeaves extends BlockLeavesBase implements IShearable {
 
@@ -46,14 +45,13 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
 
     @SideOnly(Side.CLIENT)
     public int getBlockColor() {
-        double var1 = (double)0.5F;
-        double var3 = (double)1.0F;
+        double var1 = (double) 0.5F;
+        double var3 = (double) 1.0F;
         return ColorizerFoliage.getFoliageColor(var1, var3);
     }
 
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int meta)
-    {
+    public int getRenderColor(int meta) {
         return color;
     }
 
@@ -62,16 +60,13 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
      * when first determining what to render.
      */
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, int x, int y, int z)
-    {
+    public int colorMultiplier(IBlockAccess worldIn, int x, int y, int z) {
         int l = 0;
         int i1 = 0;
         int j1 = 0;
 
-        for (int k1 = -1; k1 <= 1; ++k1)
-        {
-            for (int l1 = -1; l1 <= 1; ++l1)
-            {
+        for (int k1 = -1; k1 <= 1; ++k1) {
+            for (int l1 = -1; l1 <= 1; ++l1) {
                 l += (color & 16711680) >> 16;
                 i1 += (color & 65280) >> 8;
                 j1 += color & 255;
@@ -283,8 +278,7 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
         for (int i = 0; i < 2; ++i) {
-            this.icons[i] = reg
-                .registerIcon(this.getTextureName() + (i == 1 ? "_opaque" : ""));
+            this.icons[i] = reg.registerIcon(this.getTextureName() + (i == 1 ? "_opaque" : ""));
         }
     }
 
@@ -295,14 +289,13 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z,
-        int side) {
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
         Block block = worldIn.getBlock(x, y, z);
-        return Blocks.leaves.isOpaqueCube() && block == this ? false : super.shouldSideBeRendered(worldIn, x, y, z, side);
+        return Blocks.leaves.isOpaqueCube() && block == this ? false
+            : super.shouldSideBeRendered(worldIn, x, y, z, side);
     }
 
-    public boolean isOpaqueCube()
-    {
+    public boolean isOpaqueCube() {
         return Blocks.leaves.isOpaqueCube();
     }
 

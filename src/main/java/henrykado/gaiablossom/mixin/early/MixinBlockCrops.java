@@ -14,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import vazkii.botania.common.world.WorldTypeSkyblock;
-
 @Mixin(value = BlockCrops.class, remap = false)
 public abstract class MixinBlockCrops extends BlockBush {
 
@@ -27,7 +25,10 @@ public abstract class MixinBlockCrops extends BlockBush {
         CallbackInfoReturnable<ArrayList<ItemStack>> cir) {
         ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
-        if (WorldTypeSkyblock.isWorldSkyblock(world)) {
+        if (world.getWorldInfo()
+            .getTerrainType()
+            .getWorldTypeName()
+            .equals("botania-skyblock")) {
             cir.setReturnValue(ret);
         }
 

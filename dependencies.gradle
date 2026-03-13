@@ -43,7 +43,7 @@ dependencies {
 
     compileOnly("curse.maven:gadomancy-237271:2338768")
 
-    implementation('com.github.GTNewHorizons:Botania:1.13.6-GTNH:dev')
+    compileOnly('com.github.GTNewHorizons:Botania:1.13.6-GTNH:dev')
     compileOnly rfg.deobf("curse.maven:et-futurum-requiem-441392:5873837")
     compileOnly rfg.deobf("curse.maven:the-twilight-forest-227639:4629338")
 

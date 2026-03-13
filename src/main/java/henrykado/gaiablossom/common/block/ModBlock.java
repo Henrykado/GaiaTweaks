@@ -1,12 +1,12 @@
 package henrykado.gaiablossom.common.block;
 
-import henrykado.gaiablossom.GaiaBlossom;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import henrykado.gaiablossom.Config;
+import henrykado.gaiablossom.GaiaBlossom;
 import henrykado.gaiablossom.common.block.tileentity.TileEntityMobSpawnerTower;
 
 public class ModBlock extends Block {
@@ -45,7 +45,6 @@ public class ModBlock extends Block {
     public static void registerBlock(Block block, String name) {
         registerBlock(block, name, true);
     }
-
 
     public ModBlock(Material material) {
         super(material);
