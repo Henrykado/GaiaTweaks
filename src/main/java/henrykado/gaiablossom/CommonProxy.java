@@ -67,7 +67,9 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event) {
         if (Config.autumnForest) {
             BiomeDictionary.registerBiomeType(autumnForest, BiomeDictionary.Type.FOREST);
-            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(autumnForest, 10));
+            BiomeManager.addBiome(
+                BiomeManager.BiomeType.COOL,
+                new BiomeManager.BiomeEntry(autumnForest, Config.autumnForestBiomeWeight));
         }
     }
 

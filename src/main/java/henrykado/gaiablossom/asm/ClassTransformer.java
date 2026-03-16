@@ -71,7 +71,7 @@ public class ClassTransformer implements IClassTransformer {
             }
 
             case "thaumcraft.common.config.ConfigItems" -> {
-                if (!Config.customTwilightForestModels) break;
+                if (!Config.gogglesOfRevealingBauble) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
@@ -86,6 +86,7 @@ public class ClassTransformer implements IClassTransformer {
             }
 
             case "twilightforest.client.TFClientProxy" -> {
+                if (!Config.customTwilightForestModels) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
@@ -107,6 +108,7 @@ public class ClassTransformer implements IClassTransformer {
                 return writeClass(classNode);
             }
             case "twilightforest.client.renderer.entity.RenderTFDeer" -> {
+                if (!Config.customTwilightForestModels) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 
@@ -119,6 +121,7 @@ public class ClassTransformer implements IClassTransformer {
                 return writeClass(classNode);
             }
             case "twilightforest.client.renderer.entity.RenderTFBighorn" -> {
+                if (!Config.customTwilightForestModels) break;
                 ClassNode classNode = new ClassNode();
                 new ClassReader(basicClass).accept(classNode, ClassReader.SKIP_FRAMES);
 

@@ -16,7 +16,7 @@ public class SkeletonProperties implements IExtendedEntityProperties {
     }
 
     public int rangedAttackTime = 60;
-    public boolean isAttacking = false;
+    // public boolean isAttacking = false;
 
     @Override
     public void saveNBTData(NBTTagCompound compound) {}

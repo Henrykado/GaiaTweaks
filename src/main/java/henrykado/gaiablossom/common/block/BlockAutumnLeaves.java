@@ -23,14 +23,14 @@ import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockModLeaves extends BlockLeavesBase implements IShearable {
+public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     int[] connectedLogs;
 
     protected IIcon[] icons = new IIcon[2];
     int color;
 
-    public BlockModLeaves(String name, int color) {
+    public BlockAutumnLeaves(String name, int color) {
         super(Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
@@ -290,9 +290,7 @@ public class BlockModLeaves extends BlockLeavesBase implements IShearable {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-        Block block = worldIn.getBlock(x, y, z);
-        return Blocks.leaves.isOpaqueCube() && block == this ? false
-            : super.shouldSideBeRendered(worldIn, x, y, z, side);
+        return !Blocks.leaves.isOpaqueCube();
     }
 
     public boolean isOpaqueCube() {

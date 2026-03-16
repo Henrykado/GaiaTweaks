@@ -16,12 +16,12 @@ public class SkeletonPacket implements IMessage {
 
     int rangedAttackTime;
     int entityID;
-    boolean isAttacking;
+    // boolean isAttacking;
 
     public SkeletonPacket(int entityID, int bowPull, boolean isAttacking) {
         this.rangedAttackTime = bowPull;
         this.entityID = entityID;
-        this.isAttacking = isAttacking;
+        // this.isAttacking = isAttacking;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SkeletonPacket implements IMessage {
         // Writes the int into the buf
         buf.writeInt(entityID);
         buf.writeInt(rangedAttackTime);
-        buf.writeBoolean(isAttacking);
+        // buf.writeBoolean(isAttacking);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SkeletonPacket implements IMessage {
         // Reads the int back from the buf.
         entityID = buf.readInt();
         rangedAttackTime = buf.readInt();
-        isAttacking = buf.readBoolean();
+        // isAttacking = buf.readBoolean();
     }
 
     public static class MessageHandler implements IMessageHandler<SkeletonPacket, IMessage> {
@@ -48,7 +48,7 @@ public class SkeletonPacket implements IMessage {
             if (entity != null) {
                 SkeletonProperties data = SkeletonProperties.get(entity);
                 if (data != null) {
-                    data.isAttacking = message.isAttacking;
+                    // data.isAttacking = message.isAttacking;
                     data.rangedAttackTime = message.rangedAttackTime;
                 }
             }

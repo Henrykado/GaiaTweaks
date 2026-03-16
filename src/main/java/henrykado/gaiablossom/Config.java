@@ -21,8 +21,6 @@ public class Config {
 
     private static Configuration configuration;
 
-    public static int swamplandWaterColorOverride = 4718414;
-
     public static boolean showAchievementsInventoryButton = true;
     public static boolean renderSkeletonChargingBow = true;
     public static int animalTemptDelay = 30;
@@ -39,6 +37,7 @@ public class Config {
     public static boolean undergroundBiomes = true;
     public static boolean autumnForest = false;
     public static int autumnForestBiomeID = 40;
+    public static int autumnForestBiomeWeight = 7;
 
     public static boolean slowerCropGrowth = false;
     public static boolean enableStaminaSystem = false;
@@ -105,16 +104,6 @@ public class Config {
 
     public static void synchronizeConfiguration(File configFile) {
         configuration = new Configuration(configFile);
-
-        /*
-         * swamplandWaterColorOverride = configuration.getInt(
-         * "swamplandWaterColorOverride",
-         * Configuration.CATEGORY_GENERAL,
-         * swamplandWaterColorOverride,
-         * 0,
-         * Integer.MAX_VALUE,
-         * "");
-         */
 
         enableSwordParry = configuration.getBoolean(
             "enableSwordParry",
@@ -200,7 +189,10 @@ public class Config {
             "Adds the Autumnal Forest, a new autumn-themed biome");
 
         autumnForestBiomeID = configuration
-            .getInt(Configuration.CATEGORY_GENERAL, "autumnForestBiomeID", 40, 0, Integer.MAX_VALUE, "");
+            .getInt("autumnForestBiomeID", Configuration.CATEGORY_GENERAL, 40, 0, Integer.MAX_VALUE, "");
+
+        autumnForestBiomeWeight = configuration
+            .getInt("autumnForestBiomeWeight", Configuration.CATEGORY_GENERAL, 7, 0, Integer.MAX_VALUE, "");
 
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");

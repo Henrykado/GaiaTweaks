@@ -17,7 +17,8 @@ public enum Mixins {
 
     CONSTANT_TEMPT(Phase.EARLY, Side.BOTH, "entity.MixinEntityAITempt"),
     // MIXIN_PLAYER(Phase.EARLY, Side.BOTH, "entity.MixinEntityPlayer"),
-    SKELETON_LOWERSARMS(Phase.EARLY, Side.CLIENT, () -> Config.renderSkeletonChargingBow, "client.MixinModelSkeleton"),
+    // SKELETON_LOWERSARMS(Phase.EARLY, Side.CLIENT, () -> Config.renderSkeletonChargingBow,
+    // "client.MixinModelSkeleton"),
     SKELETON_BETTERBOW(Phase.EARLY, Side.CLIENT, () -> Config.renderSkeletonChargingBow, "entity.MixinEntitySkeleton"),
     SKELETON_BETTERBOW_PACKET(Phase.EARLY, Side.BOTH, () -> Config.renderSkeletonChargingBow,
         "entity.MixinEntityAIArrowAttack"),

@@ -57,7 +57,7 @@ dependencies {
     runtimeOnlyNonPublishable("curse.maven:et-futurum-requiem-441392:5873837")
     //implementation rfg.deobf("curse.maven:xaeros-minimap-263420:6012805")
 
-    implementation('curse.maven:nbtstructurelib-1388190:7322675')
+    //implementation('curse.maven:nbtstructurelib-1388190:7322675')
     implementation('com.github.GTNewHorizons:AppleCore:3.3.8:dev')
 
     implementation('com.github.GTNewHorizons:Angelica:2.1.1:dev')

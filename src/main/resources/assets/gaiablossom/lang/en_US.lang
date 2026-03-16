@@ -4,6 +4,7 @@ tile.log_taintwood.name=Tainted Log
 tile.autumn_red.name=Red Oak Leaves
 tile.autumn_orange.name=Orange Oak Leaves
 tile.dead_leaves.name=Dead Leaves
+tile.towerMobSpawner.name=Battle Tower Mob Spawner
 
 tc.visdiscountGoggles=(in helmet slot)
 
