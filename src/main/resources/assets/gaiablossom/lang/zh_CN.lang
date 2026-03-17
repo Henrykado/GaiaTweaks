@@ -1,9 +1,9 @@
-item.recall_potion.name=回忆药水
-item.gaiablossom:living_jetpack.name=活体喷气背包
-
 tile.icystone.name=霜冻圆石
 tile.cobbedstone.name=蛛网石
 tile.log_taintwood.name=腐化原木
+tile.autumn_red.name=红色橡树树叶
+tile.autumn_orange.name=橙色橡树树叶
+tile.dead_leaves.name=落叶堆
 tile.towerMobSpawner.name=战斗高塔刷怪笼
 
 tc.visdiscountGoggles=(头盔槽位)
