@@ -6,6 +6,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import com.gildedgames.the_aether.AetherConfig;
+
+import twilightforest.TwilightForestMod;
+
 @Mixin(GatewayGenerator.class)
 public abstract class MixinDMGateway {
 
@@ -14,7 +18,7 @@ public abstract class MixinDMGateway {
         at = @At(value = "INVOKE", target = "Lorg/dimdev/dimdoors/config/DimensionFilter;isAccepted(I)Z"),
         remap = false)
     public boolean dimensionBlacklistInject(DimensionFilter instance, int dimensionID) {
-        if (dimensionID != 0) {
+        if (dimensionID == AetherConfig.getAetherDimensionID() || dimensionID == TwilightForestMod.dimensionID) {
             return false;
         }
         return instance.isAccepted(dimensionID);

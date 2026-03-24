@@ -53,11 +53,13 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
 
     @Inject(method = "canEat(Z)Z", at = @At(value = "HEAD"), cancellable = true)
     private void canEatInject(boolean canEat, CallbackInfoReturnable<Boolean> cir) {
-        boolean flag = true;
-        if (capabilities.isCreativeMode || (!getFoodStats().needFood() && getHealth() >= getMaxHealth())) {
-            flag = false;
+        if (!Config.enableStaminaSystem || capabilities.isCreativeMode
+                || (!getFoodStats().needFood() && getHealth() >= getMaxHealth())) {
+            cir.setReturnValue(false);
         }
-        if (Config.enableStaminaSystem) cir.setReturnValue(flag);
+        else {
+            cir.setReturnValue(true);
+        }
     }
 
     /*

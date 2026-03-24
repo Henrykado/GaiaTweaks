@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 
 import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.common.block.ModBlock;
@@ -23,11 +24,13 @@ public class Quark {
         icystone = new ModBlock(Material.rock).register("icystone")
             .setHardness(2.0F)
             .setResistance(10.0F)
-            .setStepSound(soundTypePiston);
+            .setStepSound(soundTypePiston)
+            .setCreativeTab(CreativeTabs.tabBlock);
         cobbedstone = new ModBlock(Material.rock).register("cobbedstone")
             .setHardness(2.0F)
             .setResistance(10.0F)
-            .setStepSound(soundTypePiston);
+            .setStepSound(soundTypePiston)
+            .setCreativeTab(CreativeTabs.tabBlock);
 
         for (UndergroundBiomeGenerator.UndergroundBiomeData data : Config.undergroundBiomeList) {
             undergroundBiomes.add(

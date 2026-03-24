@@ -49,6 +49,7 @@ public class CommonProxy {
             MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());
         }
 
+        Quark.preInit();
         if (Config.undergroundBiomes) {
             MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
         }
@@ -57,8 +58,6 @@ public class CommonProxy {
         if (Loader.isModLoaded("AppleCore")) {
             MinecraftForge.EVENT_BUS.register(new AppleCoreEventHandler());
         }
-
-        Quark.preInit();
 
         GaiaPacketHandler.init();
     }

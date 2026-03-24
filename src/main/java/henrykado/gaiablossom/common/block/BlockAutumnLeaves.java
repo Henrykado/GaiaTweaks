@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -277,20 +276,19 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
-        for (int i = 0; i < 2; ++i) {
-            this.icons[i] = reg.registerIcon(this.getTextureName() + (i == 1 ? "_opaque" : ""));
-        }
+        this.icons[0] = reg.registerIcon("leaves_oak");
+        this.icons[1] = reg.registerIcon("leaves_oak_opaque");
     }
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return this.icons[Minecraft.getMinecraft().gameSettings.fancyGraphics ? 0 : 1];
+        return this.icons[Blocks.leaves.isOpaqueCube() ? 1 : 0];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-        return !Blocks.leaves.isOpaqueCube();
+        return true;
     }
 
     public boolean isOpaqueCube() {

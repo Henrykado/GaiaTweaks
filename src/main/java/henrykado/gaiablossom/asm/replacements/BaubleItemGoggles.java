@@ -88,7 +88,7 @@ public class BaubleItemGoggles extends ItemGoggles implements IBaubleExpanded {
         }
         goggleModel.isRiding = player.isRiding();
         // GL11.glTranslated(-0.5, -0.5, armor ? 0.11999999731779099 : 0.0);
-        float scale = player.inventory.armorInventory[3] != null ? 0.07F : 0.0625F;
+        float scale = player.getCurrentArmor(3) != null ? 0.07F : 0.0625F;
 
         GL11.glTranslated(0.0F, (player.isSneaking() ? scale : 0.0) + 0.025F, 0.0F);
         goggleModel.bipedHead.render(scale);
