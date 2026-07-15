@@ -55,6 +55,8 @@ dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:twilightforest:2.7.23:dev")
     runtimeOnlyNonPublishable("curse.maven:natures-compass-252848:2451823")
     runtimeOnlyNonPublishable("curse.maven:et-futurum-requiem-441392:5873837")
+
+    runtimeOnlyNonPublishable("curse.maven:salis-arcana-1162488:8355620")
     //implementation rfg.deobf("curse.maven:xaeros-minimap-263420:6012805")
 
     //implementation('curse.maven:nbtstructurelib-1388190:7322675')

@@ -410,41 +410,22 @@ public class Config {
             greatwoodBiomeIDBlacklist,
             "A list of biome IDs where greatwood trees will not generate");
 
-        excavationEarthVisCost = configuration.getInt(
-            "excavationEarthVisCost",
-            "thaumcraft",
-            excavationEarthVisCost,
-            0, Integer.MAX_VALUE, "");
+        excavationEarthVisCost = configuration
+            .getInt("excavationEarthVisCost", "thaumcraft", excavationEarthVisCost, 0, Integer.MAX_VALUE, "");
 
-        shockAirVisCost = configuration.getInt(
-            "shockAirVisCost",
-            "thaumcraft",
-            shockAirVisCost,
-            0, Integer.MAX_VALUE, "");
+        shockAirVisCost = configuration
+            .getInt("shockAirVisCost", "thaumcraft", shockAirVisCost, 0, Integer.MAX_VALUE, "");
 
-        earthShockAirVisCost = configuration.getInt(
-            "shockAirVisCost",
-            "thaumcraft",
-            shockAirVisCost,
-            0, Integer.MAX_VALUE, "");
+        earthShockAirVisCost = configuration
+            .getInt("shockAirVisCost", "thaumcraft", shockAirVisCost, 0, Integer.MAX_VALUE, "");
 
-        chainShockAirVisCost = configuration.getInt(
-            "shockAirVisCost",
-            "thaumcraft",
-            shockAirVisCost,
-            0, Integer.MAX_VALUE, "");
+        chainShockAirVisCost = configuration
+            .getInt("shockAirVisCost", "thaumcraft", shockAirVisCost, 0, Integer.MAX_VALUE, "");
 
-        fireVisCost = configuration.getInt(
-            "fireVisCost",
-            "thaumcraft",
-            fireVisCost,
-            0, Integer.MAX_VALUE, "");
+        fireVisCost = configuration.getInt("fireVisCost", "thaumcraft", fireVisCost, 0, Integer.MAX_VALUE, "");
 
-        fireballVisCost = configuration.getInt(
-            "fireballVisCost",
-            "thaumcraft",
-            fireballVisCost,
-            0, Integer.MAX_VALUE, "");
+        fireballVisCost = configuration
+            .getInt("fireballVisCost", "thaumcraft", fireballVisCost, 0, Integer.MAX_VALUE, "");
 
         overworldOnlyDimensionalDoors = configuration.getBoolean(
             "overworldOnlyDimensionalDoors",

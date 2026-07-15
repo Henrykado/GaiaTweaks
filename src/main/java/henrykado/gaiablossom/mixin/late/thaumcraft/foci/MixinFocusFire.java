@@ -1,9 +1,14 @@
 package henrykado.gaiablossom.mixin.late.thaumcraft.foci;
 
-import henrykado.gaiablossom.Config;
 import net.minecraft.item.ItemStack;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+
+import henrykado.gaiablossom.Config;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.ItemFocusBasic;
@@ -11,16 +16,20 @@ import thaumcraft.common.items.wands.foci.ItemFocusFire;
 
 @Mixin(ItemFocusFire.class)
 public class MixinFocusFire extends ItemFocusBasic {
-    /**
-     * @author
-     * @reason
-     */
-    @Overwrite(remap = false)
-    public AspectList getVisCost(ItemStack itemstack) {
-        return this.isUpgradedWith(itemstack, ItemFocusFire.firebeam)
-            ? (new AspectList()).add(Aspect.FIRE, Config.fireVisCost).add(Aspect.ORDER, 3)
-            : (this.isUpgradedWith(itemstack, ItemFocusFire.fireball)
-            ? (new AspectList()).add(Aspect.FIRE, Config.fireballVisCost).add(Aspect.ENTROPY, 33)
-            : (new AspectList()).add(Aspect.FIRE, Config.fireVisCost));
+
+    @Inject(method = "getVisCost", at = @At("HEAD"), remap = false, cancellable = true)
+    public void getVisCostInject(ItemStack itemstack, CallbackInfoReturnable<AspectList> cir) {
+        if (this.isUpgradedWith(itemstack, ItemFocusFire.firebeam) && Config.fireVisCost != 10) {
+            cir.setReturnValue(
+                (new AspectList()).add(Aspect.FIRE, Config.fireVisCost)
+                .add(Aspect.ORDER, 3));
+        }
+        else if (this.isUpgradedWith(itemstack, ItemFocusFire.fireball) && Config.fireballVisCost != 66) {
+            cir.setReturnValue((new AspectList()).add(Aspect.FIRE, Config.fireballVisCost)
+                .add(Aspect.ENTROPY, 33));
+        }
+        else if (Config.fireVisCost != 10) {
+            cir.setReturnValue((new AspectList()).add(Aspect.FIRE, Config.fireVisCost));
+        }
     }
 }
