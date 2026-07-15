@@ -94,10 +94,8 @@ public enum Mixins {
         "thaumcraft.MixinTileArcaneFurnace"),
     THAUMCRAFT_CHARGERELAYNERF(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, () -> Config.nerfWorkbenchVisRelay,
         "thaumcraft.MixinMagicWorkbenchRelay"),
-    THAUMCRAFT_EXCAVATEVISCOST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT,
-        "thaumcraft.foci.MixinFocusExcavation"),
-    THAUMCRAFT_SHOCKVISCOST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT,
-        "thaumcraft.foci.MixinFocusShock"),
+    THAUMCRAFT_EXCAVATEVISCOST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.foci.MixinFocusExcavation"),
+    THAUMCRAFT_SHOCKVISCOST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.foci.MixinFocusShock"),
     THAUMCRAFT_FIREVISCOST(Phase.LATE, Side.BOTH, TargetedMod.THAUMCRAFT, "thaumcraft.foci.MixinFocusFire"),
 
     PMOBS_RAIN_ROCKETCREEPER(Phase.LATE, Side.BOTH, TargetedMod.PRIMITIVE_MOBS, "primitive.MixinRocketCreeper"),
