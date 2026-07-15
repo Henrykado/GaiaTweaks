@@ -90,7 +90,14 @@ public class Config {
     public static boolean removeHarnessModel = false;
     public static boolean customTwilightForestModels = false;
     public static boolean infernalFurnaceSteel = true;
+    public static boolean nerfWorkbenchVisRelay = false;
     public static String[] greatwoodBiomeIDBlacklist = { "29" };
+    public static int excavationEarthVisCost = 15;
+    public static int shockAirVisCost = 15;
+    public static int chainShockAirVisCost = 40;
+    public static int earthShockAirVisCost = 75;
+    public static int fireVisCost = 10;
+    public static int fireballVisCost = 66;
 
     public static boolean rocketCreeperRainSpawn = false;
     public static boolean overworldOnlyDimensionalDoors = true;
@@ -391,11 +398,53 @@ public class Config {
             true,
             "Allows the Infernal Furnace to smelt iron ingots into Railcraft's steel ingots. Requires Railcraft");
 
+        nerfWorkbenchVisRelay = configuration.getBoolean(
+            "nerfWorkbenchVisRelay",
+            "thaumcraft",
+            false,
+            "Makes the Arcane Workbench vis charge relay slower to charge your wand.");
+
         greatwoodBiomeIDBlacklist = configuration.getStringList(
             "greatwoodBiomeIDBlacklist",
             "thaumcraft",
             greatwoodBiomeIDBlacklist,
             "A list of biome IDs where greatwood trees will not generate");
+
+        excavationEarthVisCost = configuration.getInt(
+            "excavationEarthVisCost",
+            "thaumcraft",
+            excavationEarthVisCost,
+            0, Integer.MAX_VALUE, "");
+
+        shockAirVisCost = configuration.getInt(
+            "shockAirVisCost",
+            "thaumcraft",
+            shockAirVisCost,
+            0, Integer.MAX_VALUE, "");
+
+        earthShockAirVisCost = configuration.getInt(
+            "shockAirVisCost",
+            "thaumcraft",
+            shockAirVisCost,
+            0, Integer.MAX_VALUE, "");
+
+        chainShockAirVisCost = configuration.getInt(
+            "shockAirVisCost",
+            "thaumcraft",
+            shockAirVisCost,
+            0, Integer.MAX_VALUE, "");
+
+        fireVisCost = configuration.getInt(
+            "fireVisCost",
+            "thaumcraft",
+            fireVisCost,
+            0, Integer.MAX_VALUE, "");
+
+        fireballVisCost = configuration.getInt(
+            "fireballVisCost",
+            "thaumcraft",
+            fireballVisCost,
+            0, Integer.MAX_VALUE, "");
 
         overworldOnlyDimensionalDoors = configuration.getBoolean(
             "overworldOnlyDimensionalDoors",
