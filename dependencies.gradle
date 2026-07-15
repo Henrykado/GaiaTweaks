@@ -34,7 +34,7 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    compileOnly rfg.deobf("curse.maven:aether-255308:5875775")
+    implementation rfg.deobf("curse.maven:aether-255308:5875775")
 
     implementation rfg.deobf("curse.maven:thaumcraft-223628:2227552")
     implementation('com.github.GTNewHorizons:Baubles-Expanded:2.2.2-GTNH:dev')

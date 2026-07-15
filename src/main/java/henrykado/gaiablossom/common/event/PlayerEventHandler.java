@@ -58,28 +58,4 @@ public class PlayerEventHandler {
             }
         }
     }
-
-    /*
-     * @SubscribeEvent
-     * public void customWaterColor(BiomeEvent.GetWaterColor event) {
-     * if (event.biome == BiomeGenBase.swampland) {
-     * //event.newColor = Config.swamplandWaterColorOverride;
-     * }
-     * }
-     */
-
-    /*
-     * @SubscribeEvent
-     * public void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
-     * GaiaPlayer.recalculateHealth(event.player, GaiaPlayer.get(event.player));
-     * }
-     */
-
-    // Wood tools
-    /*
-     * @SubscribeEvent
-     * public void playerBreakSpeed(PlayerEvent.BreakSpeed event) {
-     * event.newSpeed = event.originalSpeed + 1.0F - (event.entityPlayer.getHeldItem().getItemDamage() / 25.0F);
-     * }
-     */
 }
