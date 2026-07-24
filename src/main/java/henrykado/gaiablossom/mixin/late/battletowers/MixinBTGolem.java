@@ -26,6 +26,7 @@ public abstract class MixinBTGolem extends Entity {
     @Inject(method = "updateGolemType", at = @At("TAIL"), remap = false)
     public void changeDropAmount(CallbackInfo ci) {
         FMLLog.info(String.valueOf(drops));
-        drops = Config.battleTowerGolemDrops + worldObj.rand.nextInt(Config.battleTowerGolemExtraDrops);
+        drops = Config.battleTowerGolemExtraDrops == 0 ? Config.battleTowerGolemDrops
+            : Config.battleTowerGolemDrops + worldObj.rand.nextInt(Config.battleTowerGolemExtraDrops);
     }
 }

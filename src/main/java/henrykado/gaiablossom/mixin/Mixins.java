@@ -109,9 +109,10 @@ public enum Mixins {
         () -> Config.removePrimitiveMobsAchievements, "primitive.MixinPMAchievements"),
 
     BATTLETOWERS_BALANCEDDROPS(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "battletowers.MixinBTGolem"),
-    BATTLETOWERS_REMOVEHELLTOWER(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS, "battletowers.MixinWorldGenTower"),
+    BATTLETOWERS_REMOVEHELLTOWER(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS,
+        () -> Config.removeNetherBattleTower || Config.betterBattleTowerSpawner, "battletowers.MixinWorldGenTower"),
     BATTLETOWERS_OVERWORLD_GEN_ONLY(Phase.LATE, Side.BOTH, TargetedMod.BATTLETOWERS,
-        "battletowers.MixinWorldGenBTHandler"),
+        () -> Config.overworldOnlyBattleTowers, "battletowers.MixinWorldGenBTHandler"),
 
     ETFUTURUM_SHEARABLE_NETHER_ROOTS(Phase.LATE, Side.BOTH, TargetedMod.ETFUTURUM, () -> Config.shearNetherRoots,
         "etfuturum.MixinNetherRoots"),

@@ -54,6 +54,7 @@ public class Config {
 
     public static Property netherMovementFactor;
 
+    public static boolean overworldOnlyBattleTowers = true;
     public static boolean betterBattleTowerSpawner = true;
     public static boolean removeNetherBattleTower = true;
     public static int battleTowerGolemDrops = 2;
@@ -373,6 +374,12 @@ public class Config {
 
         thaumometerIgnoresItemFrame = configuration
             .getBoolean("thaumometerIgnoresItemFrame", "thaumcraft", true, "Makes the Thaumometer ignore item frames");
+
+        overworldOnlyBattleTowers = configuration.getBoolean(
+            "overworldOnlyBattleTowers",
+            "thaumcraft",
+            true,
+            "Limits battle tower generation to the overworld");
 
         overworldOnlyGreatwood = configuration.getBoolean(
             "overworldOnlyGreatwood",
