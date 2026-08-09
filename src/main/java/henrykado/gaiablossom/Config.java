@@ -41,6 +41,7 @@ public class Config {
 
     public static boolean slowerCropGrowth = false;
     public static boolean enableStaminaSystem = false;
+    public static boolean generateStaminaResourcePack = true;
     public static boolean scarceMeat = false;
     public static float healMultiplier = 1.0f;
     public static int staminaTimer = 200;
@@ -204,6 +205,9 @@ public class Config {
 
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");
+
+        generateStaminaResourcePack = configuration
+            .getBoolean("generateStaminaResourcePack", "hunger", true, "Generates a texture pack meant to be used with the stamina system");
 
         scarceMeat = configuration
             .getBoolean("scarceMeat", "hunger", false, "Slower egg drops and cows drop less beef");
