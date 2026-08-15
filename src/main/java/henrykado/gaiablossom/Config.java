@@ -206,8 +206,11 @@ public class Config {
         enableStaminaSystem = configuration
             .getBoolean("enableStaminaSystem", "hunger", false, "Enables the new stamina system");
 
-        generateStaminaResourcePack = configuration
-            .getBoolean("generateStaminaResourcePack", "hunger", true, "Generates a texture pack meant to be used with the stamina system");
+        generateStaminaResourcePack = configuration.getBoolean(
+            "generateStaminaResourcePack",
+            "hunger",
+            true,
+            "Generates a texture pack meant to be used with the stamina system");
 
         scarceMeat = configuration
             .getBoolean("scarceMeat", "hunger", false, "Slower egg drops and cows drop less beef");

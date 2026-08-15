@@ -1,8 +1,6 @@
 package henrykado.gaiablossom.client.event;
 
-import henrykado.gaiablossom.asm.replacements.BaubleItemWarpedGoggles;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -14,6 +12,7 @@ import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
+import henrykado.gaiablossom.asm.replacements.BaubleItemWarpedGoggles;
 
 // code adapted from Botania
 public class BaubleRenderer {
@@ -35,7 +34,8 @@ public class BaubleRenderer {
         // dispatchRenders(inv, event, RenderType.HEAD);
         for (int slot : BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.headType)) {
             ItemStack stack = inv.getStackInSlot(slot);
-            if (stack != null && (stack.getItem() instanceof BaubleItemGoggles || stack.getItem() instanceof BaubleItemWarpedGoggles)) {
+            if (stack != null && (stack.getItem() instanceof BaubleItemGoggles
+                || stack.getItem() instanceof BaubleItemWarpedGoggles)) {
                 GL11.glPushMatrix();
                 GL11.glRotatef(yawOffset, 0, -1, 0);
                 GL11.glRotatef(yaw - 270, 0, 1, 0);
@@ -43,8 +43,7 @@ public class BaubleRenderer {
                 GL11.glColor4f(1F, 1F, 1F, 1F);
                 if (stack.getItem() instanceof BaubleItemGoggles)
                     ((BaubleItemGoggles) stack.getItem()).onPlayerBaubleRender(stack, event);
-                else
-                    ((BaubleItemWarpedGoggles) stack.getItem()).onPlayerBaubleRender(stack, event);
+                else((BaubleItemWarpedGoggles) stack.getItem()).onPlayerBaubleRender(stack, event);
                 GL11.glPopMatrix();
             }
         }

@@ -1,9 +1,7 @@
 package henrykado.gaiablossom.asm.replacements;
 
-import baubles.api.BaubleType;
-import baubles.api.expanded.BaubleExpandedSlots;
-import baubles.api.expanded.BaubleItemHelper;
-import baubles.api.expanded.IBaubleExpanded;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,13 +11,18 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+
 import org.lwjgl.opengl.GL11;
+
+import baubles.api.BaubleType;
+import baubles.api.expanded.BaubleExpandedSlots;
+import baubles.api.expanded.BaubleItemHelper;
+import baubles.api.expanded.IBaubleExpanded;
 import taintedmagic.common.items.equipment.ItemWarpedGoggles;
 import thaumcraft.api.aspects.Aspect;
 
-import java.util.List;
-
 public class BaubleItemWarpedGoggles extends ItemWarpedGoggles implements IBaubleExpanded {
+
     public BaubleItemWarpedGoggles(ArmorMaterial material, int j, int k) {
         super(material, j, k);
     }

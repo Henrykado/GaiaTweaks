@@ -1,6 +1,5 @@
 package henrykado.gaiablossom.asm;
 
-import henrykado.gaiablossom.asm.replacements.BaubleItemWarpedGoggles;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +19,7 @@ import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessory;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessoryDyed;
 import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
+import henrykado.gaiablossom.asm.replacements.BaubleItemWarpedGoggles;
 import henrykado.gaiablossom.asm.replacements.NewModelTFBighorn;
 import henrykado.gaiablossom.asm.replacements.NewModelTFBighornFur;
 import henrykado.gaiablossom.asm.replacements.NewModelTFDeer;
