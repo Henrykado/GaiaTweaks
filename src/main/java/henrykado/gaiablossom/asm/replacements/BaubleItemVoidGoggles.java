@@ -18,47 +18,51 @@ import baubles.api.BaubleType;
 import baubles.api.expanded.BaubleExpandedSlots;
 import baubles.api.expanded.BaubleItemHelper;
 import baubles.api.expanded.IBaubleExpanded;
+import taintedmagic.common.items.equipment.ItemVoidmetalGoggles;
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.common.items.armor.ItemGoggles;
 
-public class BaubleItemGoggles extends ItemGoggles implements IBaubleExpanded, IBaubleRendering {
+public class BaubleItemVoidGoggles extends ItemVoidmetalGoggles implements IBaubleExpanded, IBaubleRendering {
 
-    public BaubleItemGoggles(ArmorMaterial enumarmormaterial, int j, int k) {
-        super(enumarmormaterial, j, k);
+    public BaubleItemVoidGoggles(ArmorMaterial material, int j, int k) {
+        super(material, j, k);
     }
 
     @Override
-    public String[] getBaubleTypes(ItemStack itemstack) {
+    public String[] getBaubleTypes(ItemStack itemStack) {
         return new String[] { BaubleExpandedSlots.headType };
     }
 
     @Override
-    public BaubleType getBaubleType(ItemStack itemstack) {
+    public BaubleType getBaubleType(ItemStack itemStack) {
         return null;
     }
 
     @Override
-    public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+    public void onWornTick(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+        if (!entityLivingBase.worldObj.isRemote && itemStack.isItemDamaged()
+            && entityLivingBase.ticksExisted % 20 == 0
+            && entityLivingBase instanceof EntityLivingBase) {
+            itemStack.damageItem(-1, entityLivingBase);
+        }
+    }
+
+    @Override
+    public void onEquipped(ItemStack itemStack, EntityLivingBase entityLivingBase) {
 
     }
 
     @Override
-    public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
+    public void onUnequipped(ItemStack itemStack, EntityLivingBase entityLivingBase) {
 
     }
 
     @Override
-    public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-
-    }
-
-    @Override
-    public boolean canEquip(ItemStack itemstack, EntityLivingBase player) {
+    public boolean canEquip(ItemStack itemStack, EntityLivingBase entityLivingBase) {
         return true;
     }
 
     @Override
-    public boolean canUnequip(ItemStack itemstack, EntityLivingBase player) {
+    public boolean canUnequip(ItemStack itemStack, EntityLivingBase entityLivingBase) {
         return true;
     }
 
@@ -80,7 +84,7 @@ public class BaubleItemGoggles extends ItemGoggles implements IBaubleExpanded, I
         EntityPlayer player = event.entityPlayer;
 
         Minecraft.getMinecraft().renderEngine
-            .bindTexture(new ResourceLocation("thaumcraft:textures/models/goggles.png"));
+            .bindTexture(new ResourceLocation("taintedmagic:textures/models/ModelVoidmetalGoggles.png"));
 
         GL11.glRotatef(-90, 0, 1, 0);
         if (player.isSneaking()) {

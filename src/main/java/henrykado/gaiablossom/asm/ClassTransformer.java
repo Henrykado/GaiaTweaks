@@ -19,11 +19,13 @@ import henrykado.gaiablossom.Config;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessory;
 import henrykado.gaiablossom.asm.replacements.BaubleItemAccessoryDyed;
 import henrykado.gaiablossom.asm.replacements.BaubleItemGoggles;
+import henrykado.gaiablossom.asm.replacements.BaubleItemVoidGoggles;
 import henrykado.gaiablossom.asm.replacements.BaubleItemWarpedGoggles;
 import henrykado.gaiablossom.asm.replacements.NewModelTFBighorn;
 import henrykado.gaiablossom.asm.replacements.NewModelTFBighornFur;
 import henrykado.gaiablossom.asm.replacements.NewModelTFDeer;
 import scala.tools.asm.Opcodes;
+import taintedmagic.common.items.equipment.ItemVoidmetalGoggles;
 import taintedmagic.common.items.equipment.ItemWarpedGoggles;
 import thaumcraft.common.items.armor.ItemGoggles;
 import twilightforest.client.model.ModelTFBighorn;
@@ -97,6 +99,10 @@ public class ClassTransformer implements IClassTransformer {
                         node,
                         Type.getInternalName(ItemWarpedGoggles.class),
                         Type.getInternalName(BaubleItemWarpedGoggles.class));
+                    tryReplaceInstance(
+                        node,
+                        Type.getInternalName(ItemVoidmetalGoggles.class),
+                        Type.getInternalName(BaubleItemVoidGoggles.class));
                 }
 
                 return writeClass(classNode);

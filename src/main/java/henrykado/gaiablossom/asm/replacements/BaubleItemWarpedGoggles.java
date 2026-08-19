@@ -21,7 +21,7 @@ import baubles.api.expanded.IBaubleExpanded;
 import taintedmagic.common.items.equipment.ItemWarpedGoggles;
 import thaumcraft.api.aspects.Aspect;
 
-public class BaubleItemWarpedGoggles extends ItemWarpedGoggles implements IBaubleExpanded {
+public class BaubleItemWarpedGoggles extends ItemWarpedGoggles implements IBaubleExpanded, IBaubleRendering {
 
     public BaubleItemWarpedGoggles(ArmorMaterial material, int j, int k) {
         super(material, j, k);

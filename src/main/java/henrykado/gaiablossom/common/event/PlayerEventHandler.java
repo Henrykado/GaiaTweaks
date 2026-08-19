@@ -29,9 +29,9 @@ public class PlayerEventHandler {
 
                     if (damagingEntity instanceof EntityArrow arrow) arrow.shootingEntity = player;
                 } else {
-                    damagingEntity.motionX = -damagingEntity.motionX * 5;
+                    damagingEntity.motionX = -0.5 - damagingEntity.motionX / 2;
                     damagingEntity.motionY = 0.42;
-                    damagingEntity.motionZ = -damagingEntity.motionZ * 5;
+                    damagingEntity.motionZ = -0.5 - damagingEntity.motionZ / 2;
                 }
             }
 
