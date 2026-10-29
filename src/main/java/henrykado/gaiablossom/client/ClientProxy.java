@@ -67,7 +67,9 @@ public class ClientProxy extends CommonProxy {
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
 
-        if (Loader.isModLoaded("aether_legacy") && Loader.isModLoaded("baubles") && Config.aetherBaubles) {
+        if (Loader.isModLoaded("aether_legacy")
+            && (Loader.isModLoaded("Baubles|Expanded") || Loader.isModLoaded("baubles"))
+            && Config.aetherBaubles) {
             MinecraftForge.EVENT_BUS.register(new AccessoryButtonRemover());
         }
         // MinecraftForge.EVENT_BUS.register(new RenderEventHandler());

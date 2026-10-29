@@ -90,7 +90,7 @@ public abstract class UndergroundBiome {
     }
 
     public boolean isFloor(World world, int x, int y, int z, Block block) {
-        if (!block.isNormalCube() || !block.isOpaqueCube()) return false;
+        if (!block.isNormalCube() || !block.isOpaqueCube() || !(block instanceof BlockStone)) return false;
 
         return (world.isAirBlock(x, y + 1, z) || (world.getBlock(x, y + 1, z)
             .isReplaceable(world, x, y + 1, z))
@@ -99,7 +99,7 @@ public abstract class UndergroundBiome {
     }
 
     public boolean isCeiling(World world, int x, int y, int z, Block block) {
-        if (!block.isNormalCube() || !block.isOpaqueCube()) return false;
+        if (!block.isNormalCube() || !block.isOpaqueCube() || !(block instanceof BlockStone)) return false;
 
         return world.isAirBlock(x, y - 1, z) || world.getBlock(x, y - 1, z)
             .isReplaceable(world, x, y - 1, z);
